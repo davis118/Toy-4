@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=3 uid="uid://cujevgx4bmemi"]
+
+[ext_resource type="Script" path="res://scenesScripts/player.gd" id="1_jx8cd"]
+[ext_resource type="Texture2D" uid="uid://c3ix0ac0471q0" path="res://resources/11png.png" id="2_tkmoc"]
+[ext_resource type="Texture2D" uid="uid://biyhqy3r2nlqy" path="res://resources/squarehollow.png" id="3_4ij31"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_76ybn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_tkmoc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mt6t0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_4ij31")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5k7wu"]
+size = Vector2(8, 8)
+
+[node name="player" type="CharacterBody2D"]
+z_index = 2
+collision_layer = 0
+collision_mask = 0
+motion_mode = 1
+script = ExtResource("1_jx8cd")
+
+[node name="CoreSprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(8, 8)
+sprite_frames = SubResource("SpriteFrames_76ybn")
+
+[node name="VisualSprite" type="AnimatedSprite2D" parent="."]
+rotation = 0.785398
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_mt6t0")
+
+[node name="attack" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="fastAttack" type="Timer" parent="."]
+wait_time = 0.3
+autostart = true
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_5k7wu")
+
+[connection signal="timeout" from="attack" to="." method="_on_attack_timeout"]
+[connection signal="timeout" from="fastAttack" to="." method="_on_fast_attack_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -1,0 +1,425 @@
+[gd_scene load_steps=14 format=3 uid="uid://bcqj5qjv6kwkv"]
+
+[ext_resource type="Script" path="res://scenesScripts/main.gd" id="1_4bmvj"]
+[ext_resource type="Script" path="res://scenesScripts/cam.gd" id="1_rkjo6"]
+[ext_resource type="Script" path="res://scenesScripts/mainmenu.gd" id="3_buuq4"]
+[ext_resource type="Script" path="res://scenesScripts/playButton.gd" id="4_8dy6p"]
+[ext_resource type="Theme" uid="uid://dewbm62m7qmm5" path="res://internalResources/buttontheme.tres" id="4_rs2ol"]
+[ext_resource type="Script" path="res://scenesScripts/bus.gd" id="5_t0g5c"]
+[ext_resource type="Script" path="res://scenesScripts/gameovergui.gd" id="6_bqwco"]
+[ext_resource type="Script" path="res://scenesScripts/creditscreen.gd" id="6_ki58d"]
+[ext_resource type="Script" path="res://scenesScripts/playbutton.gd" id="7_bt81l"]
+[ext_resource type="Script" path="res://scenesScripts/helpscreen.gd" id="8_1v4nq"]
+[ext_resource type="Script" path="res://scenesScripts/ingamegui.gd" id="9_ujwpq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3eod5"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.490196, 0.576471, 0.741176, 0.431373)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2obas"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+shadow_color = Color(0, 0, 0.0901961, 0.807843)
+shadow_size = 1
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_4bmvj")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(960, 540)
+scale = Vector2(2, 2)
+script = ExtResource("1_rkjo6")
+metadata/_edit_lock_ = true
+
+[node name="backgroundGUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="border" type="Panel" parent="backgroundGUI"]
+z_index = -10
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -964.0
+offset_top = -544.0
+offset_right = 964.0
+offset_bottom = 544.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3eod5")
+
+[node name="Canvas" type="CanvasLayer" parent="."]
+
+[node name="mainmenu" type="Control" parent="Canvas"]
+z_index = 10
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_buuq4")
+
+[node name="MarginContainer" type="MarginContainer" parent="Canvas/mainmenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="Control" type="Control" parent="Canvas/mainmenu"]
+layout_mode = 1
+anchor_left = 0.34375
+anchor_top = 0.235185
+anchor_right = 0.65625
+anchor_bottom = 0.87037
+offset_bottom = -1.90735e-05
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Canvas/mainmenu/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 60
+
+[node name="Label" type="Label" parent="Canvas/mainmenu/Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.39
+theme = ExtResource("4_rs2ol")
+theme_override_font_sizes/font_size = 80
+text = "the title
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="play" type="Button" parent="Canvas/mainmenu/Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("4_rs2ol")
+theme_override_font_sizes/font_size = 50
+text = "play"
+script = ExtResource("4_8dy6p")
+metadata/signal = "start"
+
+[node name="credits" type="Button" parent="Canvas/mainmenu/Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("4_rs2ol")
+theme_override_font_sizes/font_size = 50
+text = "credits"
+script = ExtResource("4_8dy6p")
+metadata/signal = "credits"
+
+[node name="how to play" type="Button" parent="Canvas/mainmenu/Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("4_rs2ol")
+theme_override_font_sizes/font_size = 50
+text = "how to play
+"
+script = ExtResource("4_8dy6p")
+metadata/signal = "help"
+
+[node name="creditscreen" type="Control" parent="Canvas"]
+visible = false
+z_index = 10
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_ki58d")
+
+[node name="MarginContainer" type="MarginContainer" parent="Canvas/creditscreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="Control" type="Control" parent="Canvas/creditscreen"]
+layout_mode = 1
+anchor_left = 0.34375
+anchor_top = 0.235185
+anchor_right = 0.65625
+anchor_bottom = 0.87037
+offset_bottom = -1.90735e-05
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Canvas/creditscreen/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 50
+
+[node name="Label" type="Label" parent="Canvas/creditscreen/Control/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_rs2ol")
+theme_override_font_sizes/font_size = 80
+text = "credits"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Canvas/creditscreen/Control/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_rs2ol")
+theme_override_font_sizes/font_size = 30
+text = "
+
+project lead: Davis Mo
+developer: Kate Anderson
+sound: Kate Anderson
+art: Erika Logofet (sometime)
+
+
+"
+horizontal_alignment = 1
+
+[node name="menu" type="Button" parent="Canvas/creditscreen/Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("4_rs2ol")
+theme_override_font_sizes/font_size = 50
+text = "menu"
+script = ExtResource("7_bt81l")
+metadata/signal = "mainMenu"
+
+[node name="helpscreen" type="Control" parent="Canvas"]
+visible = false
+z_index = 10
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_1v4nq")
+
+[node name="MarginContainer" type="MarginContainer" parent="Canvas/helpscreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="Control" type="Control" parent="Canvas/helpscreen"]
+layout_mode = 1
+anchor_left = 0.34375
+anchor_top = 0.235185
+anchor_right = 0.65625
+anchor_bottom = 0.87037
+offset_bottom = -1.90735e-05
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Canvas/helpscreen/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 50
+
+[node name="Label" type="Label" parent="Canvas/helpscreen/Control/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_rs2ol")
+theme_override_font_sizes/font_size = 80
+text = "how to play"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Canvas/helpscreen/Control/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_rs2ol")
+theme_override_font_sizes/font_size = 40
+text = "
+- protect the dot at the center of your character
+- defeat as many waves of enemies as you can
+
+"
+autowrap_mode = 2
+
+[node name="menu" type="Button" parent="Canvas/helpscreen/Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("4_rs2ol")
+theme_override_font_sizes/font_size = 50
+text = "menu"
+script = ExtResource("7_bt81l")
+metadata/signal = "mainMenu"
+
+[node name="ingamegui" type="Control" parent="Canvas"]
+visible = false
+z_index = 10
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+script = ExtResource("9_ujwpq")
+
+[node name="MarginContainer" type="MarginContainer" parent="Canvas/ingamegui"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -400.0
+offset_bottom = 214.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+metadata/_edit_use_anchors_ = true
+
+[node name="counter" type="Label" parent="Canvas/ingamegui/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_2obas")
+text = "1-1"
+horizontal_alignment = 1
+script = ExtResource("9_ujwpq")
+
+[node name="gameover" type="Control" parent="Canvas"]
+visible = false
+z_index = 10
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_bqwco")
+
+[node name="MarginContainer" type="MarginContainer" parent="Canvas/gameover"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="Control" type="Control" parent="Canvas/gameover"]
+layout_mode = 1
+anchor_left = 0.34375
+anchor_top = 0.235185
+anchor_right = 0.65625
+anchor_bottom = 0.87037
+offset_bottom = -1.90735e-05
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Canvas/gameover/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 50
+
+[node name="youdied" type="Label" parent="Canvas/gameover/Control/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_rs2ol")
+theme_override_font_sizes/font_size = 80
+text = "you died"
+horizontal_alignment = 1
+
+[node name="stats" type="Label" parent="Canvas/gameover/Control/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_rs2ol")
+theme_override_font_sizes/font_size = 40
+text = "you made it to wave 0-0"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="retry" type="Button" parent="Canvas/gameover/Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("4_rs2ol")
+theme_override_font_sizes/font_size = 50
+text = "retry"
+script = ExtResource("4_8dy6p")
+metadata/signal = "start"
+
+[node name="menu" type="Button" parent="Canvas/gameover/Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("4_rs2ol")
+theme_override_font_sizes/font_size = 50
+text = "menu"
+script = ExtResource("7_bt81l")
+metadata/signal = "mainMenu"
+
+[node name="bus" type="Node" parent="."]
+script = ExtResource("5_t0g5c")
+
+[node name="enemyAttacks" type="Node" parent="."]
+
+[node name="playerAttacks" type="Node" parent="."]
+
+[node name="chillTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="pressed" from="Canvas/mainmenu/Control/VBoxContainer/play" to="Canvas/mainmenu/Control/VBoxContainer/play" method="_on_pressed"]
+[connection signal="pressed" from="Canvas/mainmenu/Control/VBoxContainer/credits" to="Canvas/mainmenu/Control/VBoxContainer/credits" method="_on_pressed"]
+[connection signal="pressed" from="Canvas/mainmenu/Control/VBoxContainer/how to play" to="Canvas/mainmenu/Control/VBoxContainer/how to play" method="_on_pressed"]
+[connection signal="pressed" from="Canvas/creditscreen/Control/VBoxContainer/menu" to="Canvas/creditscreen/Control/VBoxContainer/menu" method="_on_pressed"]
+[connection signal="pressed" from="Canvas/helpscreen/Control/VBoxContainer/menu" to="Canvas/helpscreen/Control/VBoxContainer/menu" method="_on_pressed"]
+[connection signal="pressed" from="Canvas/gameover/Control/VBoxContainer/retry" to="Canvas/gameover/Control/VBoxContainer/retry" method="_on_pressed"]
+[connection signal="pressed" from="Canvas/gameover/Control/VBoxContainer/menu" to="Canvas/gameover/Control/VBoxContainer/menu" method="_on_pressed"]
+[connection signal="start" from="bus" to="." method="_on_bus_start"]
+[connection signal="start" from="bus" to="Canvas/mainmenu" method="_on_bus_start"]
+[connection signal="start" from="bus" to="bus" method="_on_start"]
+[connection signal="timeout" from="chillTimer" to="." method="_on_chill_timer_timeout"]
