@@ -65,6 +65,7 @@ func _physics_process(delta):
 			position = pos
 			$AttackTimer.start()
 			$MoveTimer.start()
+			$VisualSprite.play("default")
 			floatAround()
 			if has_node("/root/Main/player"):
 				player = $"/root/Main/player"
@@ -116,6 +117,7 @@ func _on_move_timer_timeout():
 
 func _on_fin_timer_timeout():
 	#laser stops
+	$VisualSprite.play("default")
 	laser.set_collision_layer_value(4, false)
 	frozenLaser = false
 	laser.get_node("CollisionShape2D/sprite").modulate = Color(1,1,1,0.5)
@@ -125,6 +127,7 @@ func _on_fin_timer_timeout():
 func _on_glow_timer_timeout():
 	frozenLaser = true
 	#laser starts
+	$VisualSprite.play("laser")
 	laser.set_collision_layer_value(4, true)
 	laser.get_node("CollisionShape2D/sprite").modulate = Color(1,0,0)
 	$FinTimer.start()

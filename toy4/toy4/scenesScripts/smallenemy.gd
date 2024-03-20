@@ -66,6 +66,7 @@ func _physics_process(delta):
 			position = pos
 			$AttackTimer.start()
 			$MoveTimer.start()
+			$VisualSprite.play("default")
 			floatAround()
 			if has_node("/root/Main/player"):
 				player = $"/root/Main/player"

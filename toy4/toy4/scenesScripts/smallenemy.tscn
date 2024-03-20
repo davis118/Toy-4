@@ -1,0 +1,84 @@
+[gd_scene load_steps=8 format=3 uid="uid://qrt13yrnp64j"]
+
+[ext_resource type="Script" path="res://scenesScripts/smallenemy.gd" id="1_dqoj7"]
+[ext_resource type="Texture2D" uid="uid://dt6wqg2oa82sb" path="res://resources/ss1.PNG" id="2_r2n30"]
+[ext_resource type="Texture2D" uid="uid://mr8r6vrk7jm5" path="res://resources/ss2.PNG" id="3_g4b0q"]
+[ext_resource type="Texture2D" uid="uid://dxkd7epb78hqd" path="res://resources/la1.PNG" id="4_if71s"]
+[ext_resource type="Texture2D" uid="uid://phvcf0piahar" path="res://resources/la2.PNG" id="5_rfr3r"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mt6t0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_r2n30")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_g4b0q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_if71s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_rfr3r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_if71s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_rfr3r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_if71s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_rfr3r")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_r2n30")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_g4b0q")
+}],
+"loop": true,
+"name": &"shoot",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5k7wu"]
+size = Vector2(64, 64)
+
+[node name="smallenemy" type="CharacterBody2D" groups=["enemies"]]
+z_index = 1
+scale = Vector2(2, 2)
+collision_layer = 4
+collision_mask = 0
+motion_mode = 1
+script = ExtResource("1_dqoj7")
+metadata/straight = true
+
+[node name="VisualSprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.08, 0.08)
+sprite_frames = SubResource("SpriteFrames_mt6t0")
+frame_progress = 0.904489
+
+[node name="AttackTimer" type="Timer" parent="."]
+
+[node name="MoveTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(32, 2.08165e-12)
+shape = SubResource("RectangleShape2D_5k7wu")
+
+[connection signal="timeout" from="AttackTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
