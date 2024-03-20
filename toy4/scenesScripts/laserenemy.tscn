@@ -1,0 +1,106 @@
+[gd_scene load_steps=9 format=3 uid="uid://b44hykaf7yuqs"]
+
+[ext_resource type="Script" path="res://scenesScripts/laserenemy.gd" id="1_g4bix"]
+[ext_resource type="Texture2D" uid="uid://c3ix0ac0471q0" path="res://resources/11png.png" id="2_t5qw6"]
+[ext_resource type="Texture2D" uid="uid://biyhqy3r2nlqy" path="res://resources/squarehollow.png" id="3_ubhwl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5k7wu"]
+size = Vector2(60, 90)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_76ybn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_t5qw6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mt6t0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ubhwl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aqjjl"]
+size = Vector2(4000, 6)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bfpt6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_t5qw6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="laserenemy" type="CharacterBody2D" groups=["enemies"]]
+z_index = 1
+collision_layer = 0
+collision_mask = 0
+motion_mode = 1
+script = ExtResource("1_g4bix")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_5k7wu")
+
+[node name="CoreSprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 2
+scale = Vector2(60, 90)
+sprite_frames = SubResource("SpriteFrames_76ybn")
+
+[node name="VisualSprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 2
+scale = Vector2(0.1, 0.15)
+sprite_frames = SubResource("SpriteFrames_mt6t0")
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 10.0
+
+[node name="MoveTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="laser" type="CharacterBody2D" parent="."]
+z_index = 6
+z_as_relative = false
+rotation = 3.14159
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="laser"]
+position = Vector2(2000, 2.08165e-12)
+shape = SubResource("RectangleShape2D_aqjjl")
+
+[node name="sprite" type="AnimatedSprite2D" parent="laser/CollisionShape2D"]
+modulate = Color(1, 1, 1, 0.352941)
+scale = Vector2(4000, 6)
+sprite_frames = SubResource("SpriteFrames_bfpt6")
+
+[node name="FinTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="GlowTimer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_5k7wu")
+
+[connection signal="timeout" from="AttackTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
+[connection signal="timeout" from="FinTimer" to="." method="_on_fin_timer_timeout"]
+[connection signal="timeout" from="GlowTimer" to="." method="_on_glow_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
