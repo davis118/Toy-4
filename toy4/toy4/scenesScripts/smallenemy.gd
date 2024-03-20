@@ -55,7 +55,7 @@ func floatAround():
 func _ready():
 	bus = $"/root/Main/bus"
 	bus.connect("clear",clear)
-	$CoreSprite.play("default")
+	
 	pass
 
 func _physics_process(delta):
@@ -99,9 +99,7 @@ func _on_move_timer_timeout():
 
 
 func damage_flash():
-	$CoreSprite.play("damage")
-	await get_tree().create_timer(0.1).timeout
-	$CoreSprite.play("default")
+	pass
 
 func _on_area_2d_body_entered(body):
 	#something is inside!!

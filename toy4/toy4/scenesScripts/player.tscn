@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:project/scenesScripts/player.tscn
-[gd_scene load_steps=6 format=3 uid="uid://cujevgx4bmemi"]
-========
 [gd_scene load_steps=12 format=3 uid="uid://cujevgx4bmemi"]
->>>>>>>> KateA:toy4/toy4/scenesScripts/player.tscn
 
 [ext_resource type="Script" path="res://scenesScripts/player.gd" id="1_jx8cd"]
 [ext_resource type="Texture2D" uid="uid://c3ix0ac0471q0" path="res://resources/11png.png" id="2_tkmoc"]
@@ -75,6 +71,9 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5k7wu"]
+size = Vector2(54, 52)
+
 [node name="player" type="CharacterBody2D"]
 z_index = 2
 collision_layer = 0
@@ -83,10 +82,13 @@ motion_mode = 1
 script = ExtResource("1_jx8cd")
 
 [node name="CoreSprite" type="AnimatedSprite2D" parent="."]
-scale = Vector2(8, 8)
+visible = false
+position = Vector2(-1.43051e-06, -1.43051e-06)
+scale = Vector2(54, 52)
 sprite_frames = SubResource("SpriteFrames_76ybn")
 
 [node name="VisualSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(7, 0)
 scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_mt6t0")
 
@@ -102,8 +104,8 @@ autostart = true
 collision_layer = 2
 collision_mask = 8
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
-polygon = PackedVector2Array(0, -54, 54, 0, 0, 55, -55, 0)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_5k7wu")
 
 [connection signal="timeout" from="attack" to="." method="_on_attack_timeout"]
 [connection signal="timeout" from="fastAttack" to="." method="_on_fast_attack_timeout"]

@@ -9,13 +9,10 @@ var expl = preload("res://scenesScripts/explodepart.tscn")
 var attacks
 var misSpeed = 400
 var bus
-<<<<<<<< HEAD:project/scenesScripts/player.gd
 var xp = 0
 var xpamount = 1
-========
 var visSprite
 var current = 0 #current animation. -1 for back, 0 stop, 1 for
->>>>>>>> KateA:toy4/toy4/scenesScripts/player.gd
 
 func clear():
 	var part = expl.instantiate()
