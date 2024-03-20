@@ -19,7 +19,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_55nok"]
-size = Vector2(6, 6)
+size = Vector2(10.25, 12)
 
 [node name="xporb" type="CharacterBody2D"]
 scale = Vector2(8, 8)
