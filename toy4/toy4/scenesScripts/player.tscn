@@ -72,7 +72,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5k7wu"]
-size = Vector2(8, 8)
+size = Vector2(54, 52)
 
 [node name="player" type="CharacterBody2D"]
 z_index = 2
@@ -82,10 +82,13 @@ motion_mode = 1
 script = ExtResource("1_jx8cd")
 
 [node name="CoreSprite" type="AnimatedSprite2D" parent="."]
-scale = Vector2(8, 8)
+visible = false
+position = Vector2(-1.43051e-06, -1.43051e-06)
+scale = Vector2(54, 52)
 sprite_frames = SubResource("SpriteFrames_76ybn")
 
 [node name="VisualSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(7, 0)
 scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_mt6t0")
 

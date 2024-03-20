@@ -13,11 +13,13 @@ var accM = 9
 const fastSpeed = 3000
 var player
 const center = Vector2(960,540)
+const xpDropped = 3
 var bus
 var r
 var traveling = true
 var pos
 var bulletScene = preload("res://scenesScripts/bullet.tscn")
+var xpScene = preload("res://scenesScripts/xp.tscn")
 var expl = preload("res://scenesScripts/explodepart.tscn")
 var floatPos
 var floatRad = 50
@@ -96,12 +98,20 @@ func _on_move_timer_timeout():
 	floatAround()
 
 
+func damage_flash():
+	pass
+
 func _on_area_2d_body_entered(body):
 	#something is inside!!
 	var damage = body.get_meta("damage")
-
+	damage_flash()
 	health -= damage
 	body.clear()
 	if health <= 0:
+		for i in xpDropped:
+			var xporb = xpScene.instantiate()
+			$"/root/Main".add_child(xporb)
+			xporb.init(global_position)
+			xporb.set_meta("isorb", true)
 		queue_free()
 	pass # Replace with function body.

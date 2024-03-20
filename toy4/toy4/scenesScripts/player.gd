@@ -9,6 +9,8 @@ var expl = preload("res://scenesScripts/explodepart.tscn")
 var attacks
 var misSpeed = 400
 var bus
+var xp = 0
+var xpamount = 1
 var visSprite
 var current = 0 #current animation. -1 for back, 0 stop, 1 for
 
@@ -75,9 +77,13 @@ func _on_attack_timeout():
 
 
 func _on_area_2d_body_entered(body):
-	#you got hit hahahaha you sucker
-	bus.emit_signal("died")
-	clear()
+	if body.get_meta("isorb"):
+		xp += xpamount
+		body.pickup()
+	else:
+		#you got hit hahahaha you sucker
+		bus.emit_signal("died")
+		clear()
 	pass # Replace with function body.
 
 

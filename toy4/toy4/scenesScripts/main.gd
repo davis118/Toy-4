@@ -148,7 +148,7 @@ func startGame():
 		#this was for circle spawn, but i changed to line!!
 		#var theta = i * 2 * PI /amount
 		#var r = 480
-		#print(Vector2(r*cos(i),r*sin(i)))
+		#print(Vector2(r*cos(i),r*sinx(i)))
 		#enemy.spawn(Vector2(r*cos(theta),r*sin(theta)),) #relative to center!!
 
 func updateStatsBox():
