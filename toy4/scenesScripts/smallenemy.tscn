@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://qrt13yrnp64j"]
+[gd_scene load_steps=8 format=3 uid="uid://qrt13yrnp64j"]
 
 [ext_resource type="Script" path="res://scenesScripts/smallenemy.gd" id="1_dqoj7"]
+[ext_resource type="Texture2D" uid="uid://btpu23qax7huu" path="res://resources/damage.png" id="2_b5ilj"]
 [ext_resource type="Texture2D" uid="uid://c3ix0ac0471q0" path="res://resources/11png.png" id="2_pdmg5"]
 [ext_resource type="Texture2D" uid="uid://biyhqy3r2nlqy" path="res://resources/squarehollow.png" id="3_oq80o"]
 
@@ -9,6 +10,14 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_pdmg5")
+}],
+"loop": true,
+"name": &"damage",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_b5ilj")
 }],
 "loop": true,
 "name": &"default",
@@ -40,6 +49,7 @@ metadata/straight = true
 [node name="CoreSprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(60, 60)
 sprite_frames = SubResource("SpriteFrames_76ybn")
+animation = &"damage"
 
 [node name="VisualSprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.1, 0.1)

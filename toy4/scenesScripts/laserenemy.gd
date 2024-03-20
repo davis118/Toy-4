@@ -51,6 +51,7 @@ func _ready():
 	laser = $laser
 	bus.connect("clear",clear)
 	
+	$CoreSprite.play("default")
 	
 	
 	pass
@@ -129,11 +130,15 @@ func _on_glow_timer_timeout():
 	laser.get_node("CollisionShape2D/sprite").modulate = Color(1,0,0)
 	$FinTimer.start()
 
-
+func damage_flash():
+	$CoreSprite.play("damage")
+	await get_tree().create_timer(0.1).timeout
+	$CoreSprite.play("default")
+	
 func _on_area_2d_body_entered(body):
 	var damage = body.get_meta("damage")
-
-
+	damage_flash()
+	
 	health -= damage
 	body.clear()
 	if health <= 0:
