@@ -1,8 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://cujevgx4bmemi"]
+[gd_scene load_steps=12 format=3 uid="uid://cujevgx4bmemi"]
 
 [ext_resource type="Script" path="res://scenesScripts/player.gd" id="1_jx8cd"]
 [ext_resource type="Texture2D" uid="uid://c3ix0ac0471q0" path="res://resources/11png.png" id="2_tkmoc"]
-[ext_resource type="Texture2D" uid="uid://biyhqy3r2nlqy" path="res://resources/squarehollow.png" id="3_4ij31"]
+[ext_resource type="Texture2D" uid="uid://d4khx7lcuoan8" path="res://resources/n1.png" id="3_krs72"]
+[ext_resource type="Texture2D" uid="uid://cuyd53cswgq3t" path="res://resources/b1.png" id="3_ulnjv"]
+[ext_resource type="Texture2D" uid="uid://brhpahqxqbrnl" path="res://resources/n2.png" id="4_6uc0f"]
+[ext_resource type="Texture2D" uid="uid://d0yy0dgyr2k4o" path="res://resources/b2.png" id="4_kflo0"]
+[ext_resource type="Texture2D" uid="uid://b1lpw6ly31nrg" path="res://resources/f1.png" id="7_2r5fq"]
+[ext_resource type="Texture2D" uid="uid://dk2p2oc3o0ohx" path="res://resources/f2.png" id="8_b0051"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_76ybn"]
 animations = [{
@@ -19,11 +24,51 @@ animations = [{
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_4ij31")
+"texture": ExtResource("3_ulnjv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_kflo0")
+}],
+"loop": true,
+"name": &"backward",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_krs72")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_6uc0f")
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_2r5fq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_b0051")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_krs72")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_6uc0f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_krs72")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_6uc0f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ulnjv")
+}],
+"loop": true,
+"name": &"forward",
+"speed": 8.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5k7wu"]
@@ -41,15 +86,14 @@ scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_76ybn")
 
 [node name="VisualSprite" type="AnimatedSprite2D" parent="."]
-rotation = 0.785398
-scale = Vector2(0.1, 0.1)
+scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_mt6t0")
 
 [node name="attack" type="Timer" parent="."]
 wait_time = 2.0
 autostart = true
 
-[node name="fastAttack" type="Timer" parent="."]
+[node name="fastAttack" type="Timer" parent="." groups=["player"]]
 wait_time = 0.3
 autostart = true
 

@@ -16,7 +16,7 @@ func _ready():
 	bus = $"/root/Main/bus"
 	bus.connect("start",close)
 	#print(get_signal_connection_list("start"))
-	bus.connect("mainMenu",open)
+	bus.connect("mainmenu",open)
 	bus.connect("credits",close)
 	bus.connect("help",close)
 	

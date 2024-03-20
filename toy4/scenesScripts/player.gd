@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-const SPEED = 300.0
+const SPEED = 500
 const JUMP_VELOCITY = -400.0
 
 var missileSc = preload("res://scenesScripts/missile.tscn")
@@ -9,6 +9,8 @@ var expl = preload("res://scenesScripts/explodepart.tscn")
 var attacks
 var misSpeed = 400
 var bus
+var visSprite
+var current = 0 #current animation. -1 for back, 0 stop, 1 for
 
 func clear():
 	var part = expl.instantiate()
@@ -20,6 +22,8 @@ func _ready():
 	attacks = $"/root/Main/playerAttacks"
 	bus = $"/root/Main/bus"
 	bus.connect("clear",clear)
+	visSprite = $VisualSprite
+	visSprite.play("default")
 func _physics_process(delta):
 
 	# Get the input direction and handle the movement/deceleration.
@@ -29,6 +33,15 @@ func _physics_process(delta):
 		velocity = direction * SPEED
 	else:
 		velocity = Vector2(0,0)
+	if velocity.x < 0 and current != -1:
+		current = -1
+		visSprite.play("backward")
+	else: if velocity.x > 0 and current != 1:
+		current = 1
+		visSprite.play("forward")
+	else: if velocity.x == 0 and current != 0:
+		current = 0
+		visSprite.play("default")
 	
 
 	move_and_slide()

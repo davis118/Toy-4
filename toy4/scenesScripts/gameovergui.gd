@@ -14,7 +14,7 @@ func _ready():
 	bus = $"/root/Main/bus"
 	bus.connect("died", exist)
 	bus.connect("start", stopExist)
-	bus.connect("mainMenu", stopExist)
+	bus.connect("mainmenu", stopExist)
 	
 
 
