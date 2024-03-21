@@ -12,10 +12,10 @@
 [ext_resource type="Script" path="res://scenesScripts/helpscreen.gd" id="8_1v4nq"]
 [ext_resource type="Script" path="res://scenesScripts/resetstats.gd" id="9_l1xfj"]
 [ext_resource type="Script" path="res://scenesScripts/ingamegui.gd" id="9_ujwpq"]
-[ext_resource type="Texture2D" uid="uid://l3jhrf4htem" path="res://resources/xpbar_under.png" id="11_h32hh"]
-[ext_resource type="Texture2D" uid="uid://c8puxusaxs8wi" path="res://resources/xpbar.png" id="11_xjh62"]
+[ext_resource type="Texture2D" uid="uid://ybfbcohvk4sd" path="res://resources/xpbar_under.png" id="11_h32hh"]
+[ext_resource type="Texture2D" uid="uid://ba37nriyeabqr" path="res://resources/xpbar.png" id="11_xjh62"]
 [ext_resource type="Script" path="res://scenesScripts/xpbar.gd" id="13_b6j3a"]
-[ext_resource type="Texture2D" uid="uid://cg2b4mhnao0ta" path="res://resources/upgradeicon.png" id="15_vpa6f"]
+[ext_resource type="Texture2D" uid="uid://e1l0aswqjxnu" path="res://resources/upgradeicon.png" id="15_vpa6f"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3eod5"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -358,20 +358,7 @@ text = "menu"
 script = ExtResource("7_bt81l")
 metadata/signal = "mainmenu"
 
-[node name="levelbar" type="Control" parent="Canvas"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 1920.0
-offset_right = 1960.0
-offset_bottom = 40.0
-
-[node name="MarginContainer" type="MarginContainer" parent="Canvas/levelbar"]
-layout_mode = 0
-offset_left = -1903.0
-offset_bottom = 141.0
-
 [node name="ingamegui" type="Control" parent="Canvas"]
-visible = false
 z_index = 10
 layout_mode = 3
 anchors_preset = 1

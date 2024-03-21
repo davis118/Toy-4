@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://l3jhrf4htem"
-path="res://.godot/imported/xpbar_under.png-0888373d236372ba56239a6b6e4e5e77.ctex"
+uid="uid://e1l0aswqjxnu"
+path="res://.godot/imported/upgradeicon.png-e6ff605adedcac05be982b4d73f17493.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/xpbar_under.png"
-dest_files=["res://.godot/imported/xpbar_under.png-0888373d236372ba56239a6b6e4e5e77.ctex"]
+source_file="res://resources/upgradeicon.png"
+dest_files=["res://.godot/imported/upgradeicon.png-e6ff605adedcac05be982b4d73f17493.ctex"]
 
 [params]
 
