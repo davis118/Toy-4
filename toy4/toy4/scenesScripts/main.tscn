@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bcqj5qjv6kwkv"]
+[gd_scene load_steps=20 format=3 uid="uid://bcqj5qjv6kwkv"]
 
 [ext_resource type="Script" path="res://scenesScripts/main.gd" id="1_4bmvj"]
 [ext_resource type="Script" path="res://scenesScripts/cam.gd" id="1_rkjo6"]
@@ -12,6 +12,10 @@
 [ext_resource type="Script" path="res://scenesScripts/helpscreen.gd" id="8_1v4nq"]
 [ext_resource type="Script" path="res://scenesScripts/resetstats.gd" id="9_l1xfj"]
 [ext_resource type="Script" path="res://scenesScripts/ingamegui.gd" id="9_ujwpq"]
+[ext_resource type="Texture2D" uid="uid://l3jhrf4htem" path="res://resources/xpbar_under.png" id="11_h32hh"]
+[ext_resource type="Texture2D" uid="uid://c8puxusaxs8wi" path="res://resources/xpbar.png" id="11_xjh62"]
+[ext_resource type="Script" path="res://scenesScripts/xpbar.gd" id="13_b6j3a"]
+[ext_resource type="Texture2D" uid="uid://cg2b4mhnao0ta" path="res://resources/upgradeicon.png" id="15_vpa6f"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3eod5"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -25,6 +29,8 @@ border_color = Color(0.490196, 0.576471, 0.741176, 0.431373)
 bg_color = Color(0.6, 0.6, 0.6, 0)
 shadow_color = Color(0, 0, 0.0901961, 0.807843)
 shadow_size = 1
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_vj5yw"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_4bmvj")
@@ -375,12 +381,14 @@ grow_horizontal = 0
 script = ExtResource("9_ujwpq")
 
 [node name="MarginContainer" type="MarginContainer" parent="Canvas/ingamegui"]
+clip_contents = true
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -400.0
-offset_bottom = 214.0
+offset_top = 64.0
+offset_bottom = 264.0
 grow_horizontal = 0
 theme_override_constants/margin_top = 100
 theme_override_constants/margin_right = 100
@@ -397,6 +405,49 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_2obas")
 text = "1-1"
 horizontal_alignment = 1
 script = ExtResource("9_ujwpq")
+
+[node name="xpbar" type="TextureProgressBar" parent="Canvas/ingamegui"]
+layout_mode = 2
+offset_left = -341.0
+offset_top = 114.0
+offset_right = -221.0
+offset_bottom = 130.0
+scale = Vector2(2, 2)
+max_value = 7.0
+texture_under = ExtResource("11_h32hh")
+texture_over = SubResource("PlaceholderTexture2D_vj5yw")
+texture_progress = ExtResource("11_xjh62")
+script = ExtResource("13_b6j3a")
+
+[node name="Label" type="Label" parent="Canvas/ingamegui/xpbar"]
+layout_mode = 0
+offset_left = 61.5
+offset_top = -26.0
+offset_right = 119.5
+offset_bottom = -3.0
+text = "Level: 0"
+
+[node name="hearts" type="HBoxContainer" parent="Canvas/ingamegui"]
+layout_mode = 0
+offset_left = -1915.0
+offset_right = -1383.0
+offset_bottom = 512.0
+theme_override_constants/separation = 5
+
+[node name="TextureRect" type="TextureRect" parent="Canvas/ingamegui/hearts"]
+layout_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="Canvas/ingamegui/hearts"]
+layout_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="Canvas/ingamegui/hearts"]
+layout_mode = 2
+
+[node name="TextureRect4" type="TextureRect" parent="Canvas/ingamegui/hearts"]
+layout_mode = 2
+
+[node name="TextureRect5" type="TextureRect" parent="Canvas/ingamegui/hearts"]
+layout_mode = 2
 
 [node name="gameover" type="Control" parent="Canvas"]
 visible = false
@@ -475,6 +526,114 @@ theme_override_font_sizes/font_size = 50
 text = "menu"
 script = ExtResource("7_bt81l")
 metadata/signal = "mainmenu"
+
+[node name="TextureRect" type="TextureRect" parent="Canvas/gameover"]
+layout_mode = 0
+offset_left = 1920.0
+offset_right = 1920.0
+
+[node name="upgrademenu" type="Control" parent="Canvas"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Canvas/upgrademenu"]
+custom_minimum_size = Vector2(2.08165e-12, 2.08165e-12)
+layout_mode = 2
+offset_left = 420.0
+offset_top = 180.0
+offset_right = 1500.0
+offset_bottom = 900.0
+theme_override_constants/separation = 120
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Canvas/upgrademenu/HBoxContainer"]
+custom_minimum_size = Vector2(280, 720)
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Button" type="Button" parent="Canvas/upgrademenu/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 60)
+layout_mode = 2
+theme = ExtResource("4_rs2ol")
+text = "Stronger Weapons"
+
+[node name="TextureRect" type="TextureRect" parent="Canvas/upgrademenu/HBoxContainer/VBoxContainer"]
+texture_filter = 3
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("15_vpa6f")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="Label2" type="Label" parent="Canvas/upgrademenu/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 180)
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("4_rs2ol")
+text = "Increase your weapon damage by 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Canvas/upgrademenu/HBoxContainer"]
+custom_minimum_size = Vector2(280, 720)
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Button" type="Button" parent="Canvas/upgrademenu/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(2.08165e-12, 60)
+layout_mode = 2
+theme = ExtResource("4_rs2ol")
+text = "Experienced"
+
+[node name="TextureRect" type="TextureRect" parent="Canvas/upgrademenu/HBoxContainer/VBoxContainer2"]
+texture_filter = 3
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("15_vpa6f")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Canvas/upgrademenu/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(2.08165e-12, 180)
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("4_rs2ol")
+text = "Increase the amount of XP orbs dropped by enemies"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Canvas/upgrademenu/HBoxContainer"]
+custom_minimum_size = Vector2(280, 720)
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Button" type="Button" parent="Canvas/upgrademenu/HBoxContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(2.08165e-12, 60)
+layout_mode = 2
+theme = ExtResource("4_rs2ol")
+text = "Faster Firing"
+
+[node name="TextureRect" type="TextureRect" parent="Canvas/upgrademenu/HBoxContainer/VBoxContainer3"]
+texture_filter = 3
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("15_vpa6f")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Canvas/upgrademenu/HBoxContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(2.08165e-12, 180)
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("4_rs2ol")
+text = "Increases attack speed by 10%"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="bus" type="Node" parent="."]
 script = ExtResource("5_t0g5c")

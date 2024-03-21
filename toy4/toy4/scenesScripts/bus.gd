@@ -5,6 +5,8 @@ signal start()
 
 signal died(posX,posY)
 
+signal gainxp()
+
 signal mainmenu()
 
 signal clear()

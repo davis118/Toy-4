@@ -20,4 +20,5 @@ func _physics_process(delta):
 
 
 func pickup():
+	bus.emit_signal("gainxp")
 	queue_free()
