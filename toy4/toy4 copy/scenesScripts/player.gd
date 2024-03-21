@@ -79,12 +79,12 @@ func _on_attack_timeout():
 func _on_area_2d_body_entered(body):
 	if body.get_meta("isorb"):
 		xp += xpamount
+		bus.emit_signal("gainxp")
 		body.pickup()
 	else:
 		#you got hit hahahaha you sucker
 		bus.emit_signal("died")
 		clear()
-	pass # Replace with function body.
 
 
 func _on_fast_attack_timeout():

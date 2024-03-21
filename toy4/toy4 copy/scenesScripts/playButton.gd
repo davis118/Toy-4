@@ -12,4 +12,4 @@ func _process(delta):
 
 
 func _on_pressed():
-	bus.emit_signal("start")
+	bus.emit_signal(get_meta("signal"))

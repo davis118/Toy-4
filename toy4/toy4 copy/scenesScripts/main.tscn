@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bcqj5qjv6kwkv"]
+[gd_scene load_steps=21 format=3 uid="uid://bcqj5qjv6kwkv"]
 
 [ext_resource type="Script" path="res://scenesScripts/main.gd" id="1_4bmvj"]
 [ext_resource type="Script" path="res://scenesScripts/cam.gd" id="1_rkjo6"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://ba37nriyeabqr" path="res://resources/xpbar.png" id="11_xjh62"]
 [ext_resource type="Script" path="res://scenesScripts/xpbar.gd" id="13_b6j3a"]
 [ext_resource type="Texture2D" uid="uid://e1l0aswqjxnu" path="res://resources/upgradeicon.png" id="15_vpa6f"]
+[ext_resource type="AudioStream" uid="uid://dca0m4sy7wqf1" path="res://resources/mezhdunami-voyager-141276.mp3" id="17_2h1dq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3eod5"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -632,6 +633,10 @@ script = ExtResource("5_t0g5c")
 [node name="chillTimer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_2h1dq")
+autoplay = true
 
 [connection signal="pressed" from="Canvas/mainmenu/Control/VBoxContainer/play" to="Canvas/mainmenu/Control/VBoxContainer/play" method="_on_pressed"]
 [connection signal="pressed" from="Canvas/mainmenu/Control/VBoxContainer/credits" to="Canvas/mainmenu/Control/VBoxContainer/credits" method="_on_pressed"]

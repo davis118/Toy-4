@@ -72,7 +72,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5k7wu"]
-size = Vector2(54, 52)
+size = Vector2(16, 16)
 
 [node name="player" type="CharacterBody2D"]
 z_index = 2
@@ -82,9 +82,9 @@ motion_mode = 1
 script = ExtResource("1_jx8cd")
 
 [node name="CoreSprite" type="AnimatedSprite2D" parent="."]
-visible = false
 position = Vector2(-1.43051e-06, -1.43051e-06)
-scale = Vector2(54, 52)
+rotation = 0.785398
+scale = Vector2(16, 16)
 sprite_frames = SubResource("SpriteFrames_76ybn")
 
 [node name="VisualSprite" type="AnimatedSprite2D" parent="."]
@@ -105,6 +105,7 @@ collision_layer = 2
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+rotation = 0.785398
 shape = SubResource("RectangleShape2D_5k7wu")
 
 [connection signal="timeout" from="attack" to="." method="_on_attack_timeout"]

@@ -20,5 +20,10 @@ func _physics_process(delta):
 
 
 func pickup():
-	bus.emit_signal("gainxp")
+	visible = false
+	$noise.pitch_scale = randf_range(1.5,2.0)
+	$noise.play()
+
+func _on_audio_stream_player_finished():
 	queue_free()
+	pass # Replace with function body.
