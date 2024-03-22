@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-const SPEED = 500
+const SPEED = 30000
 const JUMP_VELOCITY = -400.0
 
 var missileSc = preload("res://scenesScripts/missile.tscn")
@@ -27,12 +27,13 @@ func _ready():
 	visSprite = $VisualSprite
 	visSprite.play("default")
 func _physics_process(delta):
-
+	$VisualSprite.speed_scale = Glob.gamespeed
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction = Vector2(Input.get_axis("left", "right"),Input.get_axis("up", "down")).normalized()
+	
 	if direction:
-		velocity = direction * SPEED
+		velocity = direction * SPEED * delta * Glob.gamespeed
 	else:
 		velocity = Vector2(0,0)
 	if velocity.x < 0 and current != -1:

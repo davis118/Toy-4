@@ -12,8 +12,7 @@
 [ext_resource type="Script" path="res://scenesScripts/helpscreen.gd" id="8_1v4nq"]
 [ext_resource type="Script" path="res://scenesScripts/resetstats.gd" id="9_l1xfj"]
 [ext_resource type="Script" path="res://scenesScripts/ingamegui.gd" id="9_ujwpq"]
-[ext_resource type="Texture2D" uid="uid://ybfbcohvk4sd" path="res://resources/xpbar_under.png" id="11_h32hh"]
-[ext_resource type="Texture2D" uid="uid://ba37nriyeabqr" path="res://resources/xpbar.png" id="11_xjh62"]
+[ext_resource type="Theme" uid="uid://cwjstxyu0ve8i" path="res://internalResources/smalllabeltheme.tres" id="11_qvvmu"]
 [ext_resource type="Script" path="res://scenesScripts/xpbar.gd" id="13_b6j3a"]
 [ext_resource type="Texture2D" uid="uid://e1l0aswqjxnu" path="res://resources/upgradeicon.png" id="15_vpa6f"]
 [ext_resource type="AudioStream" uid="uid://dww1bebnqih03" path="res://resources/retrowave.mp3" id="17_wkswc"]
@@ -27,12 +26,13 @@ border_width_right = 4
 border_width_bottom = 4
 border_color = Color(0.490196, 0.576471, 0.741176, 0.431373)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2obas"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-shadow_color = Color(0, 0, 0.0901961, 0.807843)
-shadow_size = 1
+[sub_resource type="Gradient" id="Gradient_nx3sy"]
+colors = PackedColorArray(0.486275, 0.545098, 0.94902, 1, 0.486275, 0.545098, 0.94902, 1)
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_vj5yw"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4gh0e"]
+gradient = SubResource("Gradient_nx3sy")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_um6lf"]
 
 [sub_resource type="Animation" id="Animation_s714f"]
 resource_name = "fadeactionmusic"
@@ -411,58 +411,9 @@ anchor_right = 1.0
 grow_horizontal = 0
 script = ExtResource("9_ujwpq")
 
-[node name="MarginContainer" type="MarginContainer" parent="Canvas/ingamegui"]
-clip_contents = true
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -400.0
-offset_top = 64.0
-offset_bottom = 264.0
-grow_horizontal = 0
-theme_override_constants/margin_top = 100
-theme_override_constants/margin_right = 100
-metadata/_edit_use_anchors_ = true
-
-[node name="counter" type="Label" parent="Canvas/ingamegui/MarginContainer"]
-layout_mode = 2
-size_flags_vertical = 0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 0
-theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxFlat_2obas")
-text = "1-1"
-horizontal_alignment = 1
-script = ExtResource("9_ujwpq")
-
-[node name="xpbar" type="TextureProgressBar" parent="Canvas/ingamegui"]
-layout_mode = 2
-offset_left = -341.0
-offset_top = 114.0
-offset_right = -221.0
-offset_bottom = 130.0
-scale = Vector2(2, 2)
-max_value = 7.0
-texture_under = ExtResource("11_h32hh")
-texture_over = SubResource("PlaceholderTexture2D_vj5yw")
-texture_progress = ExtResource("11_xjh62")
-script = ExtResource("13_b6j3a")
-
-[node name="Label" type="Label" parent="Canvas/ingamegui/xpbar"]
-layout_mode = 0
-offset_left = 61.5
-offset_top = -26.0
-offset_right = 119.5
-offset_bottom = -3.0
-text = "Level: 0"
-
 [node name="hearts" type="HBoxContainer" parent="Canvas/ingamegui"]
-layout_mode = 0
-offset_left = -1915.0
-offset_right = -1383.0
-offset_bottom = 512.0
+layout_mode = 2
+offset_left = -345.0
 theme_override_constants/separation = 5
 
 [node name="TextureRect" type="TextureRect" parent="Canvas/ingamegui/hearts"]
@@ -479,6 +430,64 @@ layout_mode = 2
 
 [node name="TextureRect5" type="TextureRect" parent="Canvas/ingamegui/hearts"]
 layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Canvas/ingamegui"]
+clip_contents = true
+custom_minimum_size = Vector2(400, 2.08165e-12)
+layout_mode = 2
+offset_left = -345.0
+offset_top = 20.0
+offset_bottom = 175.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Canvas/ingamegui/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="counter" type="Label" parent="Canvas/ingamegui/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("11_qvvmu")
+theme_override_font_sizes/font_size = 40
+text = "1-1"
+horizontal_alignment = 1
+script = ExtResource("9_ujwpq")
+
+[node name="Label" type="Label" parent="Canvas/ingamegui/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("11_qvvmu")
+theme_override_font_sizes/font_size = 40
+text = "    "
+horizontal_alignment = 1
+
+[node name="xpbar" type="TextureProgressBar" parent="Canvas/ingamegui/MarginContainer/VBoxContainer/Label"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 7.0
+value = 1.0
+nine_patch_stretch = true
+texture_progress = SubResource("GradientTexture1D_4gh0e")
+script = ExtResource("13_b6j3a")
+
+[node name="Label2" type="Label" parent="Canvas/ingamegui/MarginContainer/VBoxContainer/Label/xpbar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxEmpty_um6lf")
+text = "Level: 0"
+horizontal_alignment = 1
 
 [node name="gameover" type="Control" parent="Canvas"]
 visible = false
@@ -693,6 +702,7 @@ stream = ExtResource("18_qlvsi")
 libraries = {
 "": SubResource("AnimationLibrary_1revp")
 }
+speed_scale = 0.5
 
 [connection signal="pressed" from="Canvas/mainmenu/Control/VBoxContainer/play" to="Canvas/mainmenu/Control/VBoxContainer/play" method="_on_pressed"]
 [connection signal="pressed" from="Canvas/mainmenu/Control/VBoxContainer/credits" to="Canvas/mainmenu/Control/VBoxContainer/credits" method="_on_pressed"]

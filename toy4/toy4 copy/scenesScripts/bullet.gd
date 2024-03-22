@@ -1,9 +1,10 @@
 extends CharacterBody2D
 var player
-var speed = 300
+var speed = 20000
 var expl = preload("res://scenesScripts/explodepart.tscn")
 var acc = 0
 var direction
+var animp
 
 
 var bus
@@ -27,7 +28,7 @@ func _ready():
 		
 		direction = (player.global_position - global_position).normalized()
 		rotation = atan2(direction.y,direction.x)
-		var animp = $AnimationPlayer
+		animp = $AnimationPlayer
 		animp.current_animation = "spawn"
 		animp.speed_scale = 3
 		
@@ -36,7 +37,8 @@ func _ready():
 
 
 func _physics_process(delta):
+	animp.speed_scale = Glob.gamespeed
 	if player:
-		speed += acc*delta
-		velocity = direction * speed
+		speed += acc*delta*Glob.gamespeed
+		velocity = direction * speed * delta * Glob.gamespeed
 	move_and_slide()

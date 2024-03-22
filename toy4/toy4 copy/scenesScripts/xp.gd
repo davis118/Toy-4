@@ -14,8 +14,8 @@ func clear():
 	queue_free()
 
 func _physics_process(delta):
-	velocity = velocity + Vector2(randf_range(-100,100), randf_range(-100,100))*delta
-	global_position += velocity*delta
+	velocity = velocity + Vector2(randf_range(-100,100), randf_range(-100,100))*delta*Glob.gamespeed
+	global_position += velocity*delta*Glob.gamespeed
 
 
 

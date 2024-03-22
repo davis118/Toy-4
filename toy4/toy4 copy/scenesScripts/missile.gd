@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-var speed = 500
+var speed = 25000
 const JUMP_VELOCITY = -400.0
 var acc 
 
@@ -14,7 +14,7 @@ var target
 var bus
 var expl = preload("res://scenesScripts/explodepart.tscn")
 var enemies
-
+var ovel #original velocity, before speed multiplier!
 var home = true
 
 
@@ -24,9 +24,10 @@ func clear():
 	part.go(velocity,global_position,1)
 	queue_free()
 	
+	
 func goStraight():
 	home = false
-	speed = 1000
+	speed = 40000
 	
 	velocity = Vector2(1,0) * speed
 	
@@ -59,15 +60,15 @@ func _physics_process(delta):
 	if target != null and target.is_inside_tree() and home == true:
 		  
 		var direction = (target.global_position - global_position).normalized()
-		velocity.x = lerp(velocity.x,direction.x*velocity.length(),turn*delta)
-		velocity.y = lerp(velocity.y,direction.y*velocity.length(),turn*delta)
-		turn += 2*delta
+		velocity.x = lerp(velocity.x,direction.x*velocity.length(),turn*delta*Glob.gamespeed)
+		velocity.y = lerp(velocity.y,direction.y*velocity.length(),turn*delta*Glob.gamespeed)
+		turn += 2*delta * Glob.gamespeed
 		#velocity *= Vector2(delta*acc+1,delta*acc+1)
 		
 		
-		velocity = velocity.normalized() * speed 
+		velocity = velocity.normalized() * speed *delta * Glob.gamespeed
 	else: if home == false:
-		
+		velocity = velocity.normalized() * speed *delta * Glob.gamespeed
 		pass
 	else:
 		target = getClosest()

@@ -14,6 +14,10 @@ config/name="toy4"
 run/main_scene="res://scenesScripts/main.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 
+[autoload]
+
+Glob="*res://scenesScripts/glob.gd"
+
 [display]
 
 window/size/viewport_width=1920

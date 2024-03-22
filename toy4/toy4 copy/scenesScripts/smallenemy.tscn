@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://qrt13yrnp64j"]
+[gd_scene load_steps=9 format=3 uid="uid://qrt13yrnp64j"]
 
 [ext_resource type="Script" path="res://scenesScripts/smallenemy.gd" id="1_dqoj7"]
 [ext_resource type="Texture2D" uid="uid://dt6wqg2oa82sb" path="res://resources/ss1.PNG" id="2_r2n30"]
 [ext_resource type="Texture2D" uid="uid://mr8r6vrk7jm5" path="res://resources/ss2.PNG" id="3_g4b0q"]
 [ext_resource type="Texture2D" uid="uid://dxkd7epb78hqd" path="res://resources/la1.PNG" id="4_if71s"]
 [ext_resource type="Texture2D" uid="uid://phvcf0piahar" path="res://resources/la2.PNG" id="5_rfr3r"]
+[ext_resource type="Script" path="res://scenesScripts/timerspeed.gd" id="6_ary4p"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mt6t0"]
 animations = [{
@@ -67,9 +68,11 @@ sprite_frames = SubResource("SpriteFrames_mt6t0")
 frame_progress = 0.904489
 
 [node name="AttackTimer" type="Timer" parent="."]
+script = ExtResource("6_ary4p")
 
 [node name="MoveTimer" type="Timer" parent="."]
 wait_time = 2.0
+script = ExtResource("6_ary4p")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 4

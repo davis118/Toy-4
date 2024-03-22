@@ -56,9 +56,11 @@ func _ready():
 	bus = $"/root/Main/bus"
 	bus.connect("clear",clear)
 	
+	
 	pass
 
 func _physics_process(delta):
+	$VisualSprite.speed_scale = Glob.gamespeed
 	if traveling == true && pos:
 		
 		if (position - pos).length() <= fastSpeed*delta:

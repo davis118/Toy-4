@@ -17,10 +17,11 @@ var pos
 var floatPos
 var floatRad = 50
 var acc = Vector2(0,0)
-var rotationalSpeed = 0.002
+var rotationalSpeed = 0.05
 var laser
 var frozenLaser = false
 var straight = false
+var ogfps = 8
 
 func spawn(newPos:Vector2):
 	pos = newPos
@@ -58,9 +59,10 @@ func _ready():
 	pass
 
 func _physics_process(delta):
+	$VisualSprite.speed_scale = Glob.gamespeed
 	if traveling == true && pos:
 		
-		if (position - pos).length() <= fastSpeed*delta:
+		if (position - pos).length() <= fastSpeed*delta * Glob.gamespeed:
 			
 			traveling = false
 			velocity = Vector2(0,0)
@@ -74,7 +76,7 @@ func _physics_process(delta):
 		move_and_slide()
 	else: if floatPos:
 		
-		velocity += acc * delta 
+		velocity += acc * delta * Glob.gamespeed
 		move_and_slide()
 		position.x = clamp(position.x, 0 , 1920)
 		position.y = clamp(position.y, 0 , 1080)
@@ -89,12 +91,12 @@ func _physics_process(delta):
 				desiredAng += 2*PI
 			
 			if desiredAng - laser.rotation > PI:
-				laser.rotation = move_toward(laser.rotation,-PI/2,rotationalSpeed)
+				laser.rotation = move_toward(laser.rotation,-PI/2,rotationalSpeed*delta*Glob.gamespeed)
 				
 			else: if laser.rotation - desiredAng > PI:
-				laser.rotation = move_toward(laser.rotation,PI*2.5,rotationalSpeed)
+				laser.rotation = move_toward(laser.rotation,PI*2.5,rotationalSpeed*delta*Glob.gamespeed)
 			else:
-				laser.rotation = move_toward(laser.rotation,desiredAng,rotationalSpeed)
+				laser.rotation = move_toward(laser.rotation,desiredAng,rotationalSpeed*delta*Glob.gamespeed)
 			#print(laser.rotation)
 			if laser.rotation < 0:
 				laser.rotation += 2*PI
