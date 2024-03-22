@@ -19,6 +19,11 @@ var hdiff = 0
 var htype = 0
 var flights = 0
 
+var actionmusic
+var idlemusic 
+var idleplayer
+var actionplayer 
+
 var chilling = false
 
 #uncomment following for save capabilities
@@ -135,7 +140,12 @@ func spawnEnemies(): #difficulty and type of wave
 			add_child(enemy)
 			enemy.spawn(Vector2(1600,(140 + i*(800/(diff+2-1)))))
 
+
 func startGame():
+	idleplayer.play("fadeidlemusic")
+	actionmusic.volume_db = -3
+	actionmusic.play()
+	
 	
 	player = playerScene.instantiate()
 	add_child(player)
@@ -156,12 +166,13 @@ func updateStatsBox():
 # Called when the node enters the scene tree for the first time.
 
 func over():
+	actionplayer.play("fadeactionmusic")
+	idlemusic.volume_db = 0
+	idlemusic.play()
 	flights += 1
 	if diff * 5 + type + 1 > hdiff * 5 + htype + 1:
 		hdiff = diff
 		htype = type
-		
-		
 		
 	$"Canvas/gameover/Control/VBoxContainer/stats".text = "you made it to wave: " + str(diff+1)+"-"+str(type+1) +"\n highest wave: " + str(hdiff+1)+"-"+str(htype+1)
 	save_game()
@@ -172,6 +183,11 @@ func _ready():
 	bus = $"/root/Main/bus"
 	bus.connect("start", startGame)
 	bus.connect("died", over)
+	actionmusic = $actionmusic
+	idlemusic = $idlemusic
+	idleplayer = $idlemusic/AnimationPlayer
+	actionplayer = $actionmusic/AnimationPlayer
+	idlemusic.play()
 	load_game()
 	updateStatsBox()
 
@@ -223,3 +239,23 @@ func _on_resetstats_doit():
 		#print("a")
 		#plr.queue_free()
 	#pass # Replace with function body.
+
+
+func idlefadedone(anim_name):
+	idlemusic.stop()
+	pass # Replace with function body.
+
+
+func actionfadedone(anim_name):
+	actionmusic.stop()
+	pass # Replace with function body.
+
+
+func _on_actionmusic_finished():
+	actionmusic.play()
+	pass # Replace with function body.
+
+
+func _on_idlemusic_finished():
+	idlemusic.play()
+	pass # Replace with function body.

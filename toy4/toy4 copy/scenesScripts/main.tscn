@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bcqj5qjv6kwkv"]
+[gd_scene load_steps=26 format=3 uid="uid://bcqj5qjv6kwkv"]
 
 [ext_resource type="Script" path="res://scenesScripts/main.gd" id="1_4bmvj"]
 [ext_resource type="Script" path="res://scenesScripts/cam.gd" id="1_rkjo6"]
@@ -16,7 +16,8 @@
 [ext_resource type="Texture2D" uid="uid://ba37nriyeabqr" path="res://resources/xpbar.png" id="11_xjh62"]
 [ext_resource type="Script" path="res://scenesScripts/xpbar.gd" id="13_b6j3a"]
 [ext_resource type="Texture2D" uid="uid://e1l0aswqjxnu" path="res://resources/upgradeicon.png" id="15_vpa6f"]
-[ext_resource type="AudioStream" uid="uid://dca0m4sy7wqf1" path="res://resources/mezhdunami-voyager-141276.mp3" id="17_2h1dq"]
+[ext_resource type="AudioStream" uid="uid://dww1bebnqih03" path="res://resources/retrowave.mp3" id="17_wkswc"]
+[ext_resource type="AudioStream" uid="uid://b0rqa47i65jfb" path="res://resources/leopardprintelevator.mp3" id="18_qlvsi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3eod5"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -32,6 +33,48 @@ shadow_color = Color(0, 0, 0.0901961, 0.807843)
 shadow_size = 1
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_vj5yw"]
+
+[sub_resource type="Animation" id="Animation_s714f"]
+resource_name = "fadeactionmusic"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-3.0, -40.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_weccd"]
+_data = {
+"fadeactionmusic": SubResource("Animation_s714f")
+}
+
+[sub_resource type="Animation" id="Animation_7m1n7"]
+resource_name = "fadeout"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.66533e-15, -30.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1revp"]
+_data = {
+"fadeidlemusic": SubResource("Animation_7m1n7")
+}
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_4bmvj")
@@ -634,9 +677,22 @@ script = ExtResource("5_t0g5c")
 wait_time = 0.5
 one_shot = true
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("17_2h1dq")
-autoplay = true
+[node name="actionmusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_wkswc")
+volume_db = -3.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="actionmusic"]
+libraries = {
+"": SubResource("AnimationLibrary_weccd")
+}
+
+[node name="idlemusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_qlvsi")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="idlemusic"]
+libraries = {
+"": SubResource("AnimationLibrary_1revp")
+}
 
 [connection signal="pressed" from="Canvas/mainmenu/Control/VBoxContainer/play" to="Canvas/mainmenu/Control/VBoxContainer/play" method="_on_pressed"]
 [connection signal="pressed" from="Canvas/mainmenu/Control/VBoxContainer/credits" to="Canvas/mainmenu/Control/VBoxContainer/credits" method="_on_pressed"]
@@ -652,3 +708,7 @@ autoplay = true
 [connection signal="start" from="bus" to="Canvas/mainmenu" method="_on_bus_start"]
 [connection signal="start" from="bus" to="bus" method="_on_start"]
 [connection signal="timeout" from="chillTimer" to="." method="_on_chill_timer_timeout"]
+[connection signal="finished" from="actionmusic" to="." method="_on_actionmusic_finished"]
+[connection signal="animation_finished" from="actionmusic/AnimationPlayer" to="." method="actionfadedone"]
+[connection signal="finished" from="idlemusic" to="." method="_on_idlemusic_finished"]
+[connection signal="animation_finished" from="idlemusic/AnimationPlayer" to="." method="idlefadedone"]
