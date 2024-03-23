@@ -1,6 +1,0 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cwjstxyu0ve8i"]
-
-[ext_resource type="StyleBox" uid="uid://je26ft0cedeu" path="res://internalResources/labelnormal.tres" id="1_0htke"]
-
-[resource]
-Label/styles/normal = ExtResource("1_0htke")

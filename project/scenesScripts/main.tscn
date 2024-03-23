@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bcqj5qjv6kwkv"]
+[gd_scene load_steps=65 format=3 uid="uid://bcqj5qjv6kwkv"]
 
 [ext_resource type="Script" path="res://scenesScripts/main.gd" id="1_4bmvj"]
 [ext_resource type="Script" path="res://scenesScripts/cam.gd" id="1_rkjo6"]
@@ -8,10 +8,35 @@
 [ext_resource type="Script" path="res://scenesScripts/bus.gd" id="5_t0g5c"]
 [ext_resource type="Script" path="res://scenesScripts/gameovergui.gd" id="6_bqwco"]
 [ext_resource type="Script" path="res://scenesScripts/creditscreen.gd" id="6_ki58d"]
+[ext_resource type="Texture2D" uid="uid://cuyd53cswgq3t" path="res://resources/b1.png" id="6_lkhgt"]
 [ext_resource type="Script" path="res://scenesScripts/playbutton.gd" id="7_bt81l"]
+[ext_resource type="Texture2D" uid="uid://d0yy0dgyr2k4o" path="res://resources/b2.png" id="7_ib4tj"]
 [ext_resource type="Script" path="res://scenesScripts/helpscreen.gd" id="8_1v4nq"]
+[ext_resource type="Texture2D" uid="uid://d4khx7lcuoan8" path="res://resources/n1.png" id="8_huv2k"]
+[ext_resource type="Script" path="res://scenesScripts/levelupscreen.gd" id="8_tiwyq"]
 [ext_resource type="Script" path="res://scenesScripts/resetstats.gd" id="9_l1xfj"]
+[ext_resource type="Script" path="res://scenesScripts/powerup.gd" id="9_talmo"]
 [ext_resource type="Script" path="res://scenesScripts/ingamegui.gd" id="9_ujwpq"]
+[ext_resource type="Texture2D" uid="uid://brhpahqxqbrnl" path="res://resources/n2.png" id="9_ye3w3"]
+[ext_resource type="Texture2D" uid="uid://b1lpw6ly31nrg" path="res://resources/f1.png" id="10_85piw"]
+[ext_resource type="Script" path="res://scenesScripts/volumeslider.gd" id="10_ula7c"]
+[ext_resource type="Texture2D" uid="uid://dk2p2oc3o0ohx" path="res://resources/f2.png" id="11_6e3e5"]
+[ext_resource type="StyleBox" uid="uid://je26ft0cedeu" path="res://internalResources/labelnormal.tres" id="11_jqq7j"]
+[ext_resource type="Theme" uid="uid://cwjstxyu0ve8i" path="res://internalResources/smalllabeltheme.tres" id="11_qvvmu"]
+[ext_resource type="Script" path="res://scenesScripts/menusprite.gd" id="12_mqctd"]
+[ext_resource type="Script" path="res://scenesScripts/xpbar.gd" id="13_b6j3a"]
+[ext_resource type="Texture2D" uid="uid://c3ix0ac0471q0" path="res://resources/11png.png" id="13_mc7pt"]
+[ext_resource type="StyleBox" uid="uid://bkeoei584let3" path="res://internalResources/empty.tres" id="17_kwfqf"]
+[ext_resource type="Texture2D" uid="uid://budglxfvfnb4r" path="res://resources/bulletdam.png" id="17_ndbu5"]
+[ext_resource type="Texture2D" uid="uid://vnvdn57d13ur" path="res://scenesScripts/whitecircle.png" id="17_w5cku"]
+[ext_resource type="AudioStream" uid="uid://dww1bebnqih03" path="res://resources/retrowave.mp3" id="17_wkswc"]
+[ext_resource type="AudioStream" uid="uid://b0rqa47i65jfb" path="res://resources/leopardprintelevator.mp3" id="18_qlvsi"]
+[ext_resource type="Texture2D" uid="uid://dtnvj8xg1s43q" path="res://resources/xpupgrade.PNG" id="19_naop1"]
+[ext_resource type="Script" path="res://scenesScripts/globalanims.gd" id="20_4t5fo"]
+[ext_resource type="Texture2D" uid="uid://dfun2h3qkmn2u" path="res://resources/bulletfiringspeed.PNG" id="20_14eff"]
+[ext_resource type="Texture2D" uid="uid://dqg42a13leu8w" path="res://resources/bulletspeed.PNG" id="20_22lnm"]
+[ext_resource type="Texture2D" uid="uid://dva23ybcc85ck" path="res://resources/missiledam.PNG" id="21_rnl06"]
+[ext_resource type="Texture2D" uid="uid://bxaed54p5gq6b" path="res://resources/missilefiringspeed.PNG" id="22_bc657"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3eod5"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -21,10 +46,189 @@ border_width_right = 4
 border_width_bottom = 4
 border_color = Color(0.490196, 0.576471, 0.741176, 0.431373)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2obas"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-shadow_color = Color(0, 0, 0.0901961, 0.807843)
-shadow_size = 1
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2201b"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f2qr6"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ba3if"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_lkhgt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ib4tj")
+}],
+"loop": true,
+"name": &"backward",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_huv2k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ye3w3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_85piw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_6e3e5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_huv2k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ye3w3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_huv2k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ye3w3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_lkhgt")
+}],
+"loop": true,
+"name": &"forward",
+"speed": 8.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qpc0w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_mc7pt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nwfn7"]
+bg_color = Color(0.486275, 0.545098, 0.94902, 1)
+border_width_top = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gnvex"]
+border_width_top = 2
+border_color = Color(0.486275, 0.545098, 0.94902, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2oirs"]
+border_width_top = 2
+border_color = Color(0.486275, 0.545098, 0.94902, 1)
+
+[sub_resource type="Gradient" id="Gradient_nx3sy"]
+colors = PackedColorArray(0.486275, 0.545098, 0.94902, 1, 0.486275, 0.545098, 0.94902, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4gh0e"]
+gradient = SubResource("Gradient_nx3sy")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_um6lf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eobfo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_45eox"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q1alu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_le0fj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8f2ne"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4klms"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cyfb2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8hsxr"]
+
+[sub_resource type="Animation" id="Animation_s714f"]
+resource_name = "fadeactionmusic"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-3.0, -40.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_weccd"]
+_data = {
+"fadeactionmusic": SubResource("Animation_s714f")
+}
+
+[sub_resource type="Animation" id="Animation_7m1n7"]
+resource_name = "fadeout"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.66533e-15, -30.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1revp"]
+_data = {
+"fadeidlemusic": SubResource("Animation_7m1n7")
+}
+
+[sub_resource type="Animation" id="Animation_k1h74"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_12jv1"]
+resource_name = "resume"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("globalanims:metadata/tween")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [2.08165e-12, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_6d5h7"]
+resource_name = "tween"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("globalanims:metadata/tween")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 2.08165e-12]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6u722"]
+_data = {
+"RESET": SubResource("Animation_k1h74"),
+"resume": SubResource("Animation_12jv1"),
+"slow": SubResource("Animation_6d5h7")
+}
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_4bmvj")
@@ -111,10 +315,25 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 1.39
 theme = ExtResource("4_rs2ol")
 theme_override_font_sizes/font_size = 80
-text = "the title
-"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Canvas/mainmenu/Control/VBoxContainer/Label"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -48.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 70
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2201b")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_f2qr6")
+bbcode_enabled = true
+text = "[center][tornado radius=5 freq=5]the title[/tornado][/center]"
+fit_content = true
 
 [node name="play" type="Button" parent="Canvas/mainmenu/Control/VBoxContainer"]
 layout_mode = 2
@@ -143,6 +362,18 @@ text = "help & options
 "
 script = ExtResource("4_8dy6p")
 metadata/signal = "help"
+
+[node name="VisualSprite" type="AnimatedSprite2D" parent="Canvas/mainmenu"]
+position = Vector2(387, 540)
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_ba3if")
+script = ExtResource("12_mqctd")
+
+[node name="CoreSprite" type="AnimatedSprite2D" parent="Canvas/mainmenu"]
+position = Vector2(380, 540)
+rotation = 0.785398
+scale = Vector2(16, 16)
+sprite_frames = SubResource("SpriteFrames_qpc0w")
 
 [node name="creditscreen" type="Control" parent="Canvas"]
 visible = false
@@ -231,7 +462,17 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("8_1v4nq")
 
-[node name="MarginContainer" type="MarginContainer" parent="Canvas/helpscreen"]
+[node name="Control" type="Control" parent="Canvas/helpscreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="Canvas/helpscreen/Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -243,50 +484,27 @@ theme_override_constants/margin_top = 100
 theme_override_constants/margin_right = 100
 theme_override_constants/margin_bottom = 100
 
-[node name="Control" type="Control" parent="Canvas/helpscreen"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Canvas/helpscreen/Control"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -500.0
-offset_top = -400.0
-offset_right = 500.0
-offset_bottom = 400.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 50
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Canvas/helpscreen/Control/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Canvas/helpscreen/Control/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 50
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Canvas/helpscreen/Control/VBoxContainer/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Canvas/helpscreen/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Canvas/helpscreen/Control/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 50
 
-[node name="Label" type="Label" parent="Canvas/helpscreen/Control/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Canvas/helpscreen/Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_rs2ol")
 theme_override_font_sizes/font_size = 80
 text = "how to play"
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="Canvas/helpscreen/Control/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Label2" type="Label" parent="Canvas/helpscreen/Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("4_rs2ol")
@@ -299,26 +517,26 @@ text = "
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="menuhelp" type="Label" parent="Canvas/helpscreen/Control/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="menuhelp" type="Label" parent="Canvas/helpscreen/Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_rs2ol")
 theme_override_font_sizes/font_size = 40
 text = "if the menu button does not work, press M"
 autowrap_mode = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="Canvas/helpscreen/Control/VBoxContainer/HBoxContainer"]
+[node name="stats" type="VBoxContainer" parent="Canvas/helpscreen/Control/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 50
 
-[node name="Label" type="Label" parent="Canvas/helpscreen/Control/VBoxContainer/HBoxContainer/VBoxContainer2"]
+[node name="Label" type="Label" parent="Canvas/helpscreen/Control/MarginContainer/VBoxContainer/HBoxContainer/stats"]
 layout_mode = 2
 theme = ExtResource("4_rs2ol")
 theme_override_font_sizes/font_size = 80
 text = "stats"
 horizontal_alignment = 1
 
-[node name="statsbox" type="Label" parent="Canvas/helpscreen/Control/VBoxContainer/HBoxContainer/VBoxContainer2"]
+[node name="statsbox" type="Label" parent="Canvas/helpscreen/Control/MarginContainer/VBoxContainer/HBoxContainer/stats"]
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("4_rs2ol")
@@ -328,14 +546,14 @@ highest wave:"
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="vers" type="Label" parent="Canvas/helpscreen/Control/VBoxContainer/HBoxContainer/VBoxContainer2"]
+[node name="vers" type="Label" parent="Canvas/helpscreen/Control/MarginContainer/VBoxContainer/HBoxContainer/stats"]
 layout_mode = 2
 theme = ExtResource("4_rs2ol")
 theme_override_font_sizes/font_size = 40
 text = "version 1.3"
 autowrap_mode = 2
 
-[node name="resetstats" type="Button" parent="Canvas/helpscreen/Control/VBoxContainer/HBoxContainer/VBoxContainer2"]
+[node name="resetstats" type="Button" parent="Canvas/helpscreen/Control/MarginContainer/VBoxContainer/HBoxContainer/stats"]
 layout_mode = 2
 theme = ExtResource("4_rs2ol")
 theme_override_font_sizes/font_size = 50
@@ -343,7 +561,87 @@ text = "reset stats"
 script = ExtResource("9_l1xfj")
 metadata/signal = "mainMenu"
 
-[node name="menu" type="Button" parent="Canvas/helpscreen/Control/VBoxContainer"]
+[node name="options" type="VBoxContainer" parent="Canvas/helpscreen/Control/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 50
+
+[node name="Label" type="Label" parent="Canvas/helpscreen/Control/MarginContainer/VBoxContainer/HBoxContainer/options"]
+layout_mode = 2
+theme = ExtResource("4_rs2ol")
+theme_override_font_sizes/font_size = 80
+text = "options"
+horizontal_alignment = 1
+
+[node name="musiclabel" type="Label" parent="Canvas/helpscreen/Control/MarginContainer/VBoxContainer/HBoxContainer/options"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("4_rs2ol")
+theme_override_font_sizes/font_size = 40
+text = "music volume"
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="musicslider" type="Label" parent="Canvas/helpscreen/Control/MarginContainer/VBoxContainer/HBoxContainer/options"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("4_rs2ol")
+theme_override_font_sizes/font_size = 40
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="music" type="HSlider" parent="Canvas/helpscreen/Control/MarginContainer/VBoxContainer/HBoxContainer/options/musicslider" groups=["volumesliders"]]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 2
+theme_override_styles/slider = SubResource("StyleBoxFlat_nwfn7")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_gnvex")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_2oirs")
+min_value = -30.0
+max_value = 2.08165e-12
+step = 2.08165e-12
+script = ExtResource("10_ula7c")
+metadata/type = 1
+
+[node name="sfxvolume" type="Label" parent="Canvas/helpscreen/Control/MarginContainer/VBoxContainer/HBoxContainer/options"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("4_rs2ol")
+theme_override_font_sizes/font_size = 40
+text = "sound effects volume"
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="sfxslider" type="Label" parent="Canvas/helpscreen/Control/MarginContainer/VBoxContainer/HBoxContainer/options"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("4_rs2ol")
+theme_override_font_sizes/font_size = 40
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="sfx" type="HSlider" parent="Canvas/helpscreen/Control/MarginContainer/VBoxContainer/HBoxContainer/options/sfxslider" groups=["volumesliders"]]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 2
+theme_override_styles/slider = SubResource("StyleBoxFlat_nwfn7")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_gnvex")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_2oirs")
+min_value = -30.0
+max_value = 2.08165e-12
+step = 2.08165e-12
+script = ExtResource("10_ula7c")
+metadata/type = 0
+
+[node name="menu" type="Button" parent="Canvas/helpscreen/Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("4_rs2ol")
@@ -351,18 +649,6 @@ theme_override_font_sizes/font_size = 50
 text = "menu"
 script = ExtResource("7_bt81l")
 metadata/signal = "mainmenu"
-
-[node name="levelbar" type="Control" parent="Canvas"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 1920.0
-offset_right = 1960.0
-offset_bottom = 40.0
-
-[node name="MarginContainer" type="MarginContainer" parent="Canvas/levelbar"]
-layout_mode = 0
-offset_left = -1903.0
-offset_bottom = 141.0
 
 [node name="ingamegui" type="Control" parent="Canvas"]
 visible = false
@@ -374,26 +660,104 @@ anchor_right = 1.0
 grow_horizontal = 0
 script = ExtResource("9_ujwpq")
 
+[node name="hearts" type="HBoxContainer" parent="Canvas/ingamegui"]
+layout_mode = 2
+offset_left = -345.0
+theme_override_constants/separation = 5
+
+[node name="TextureRect" type="TextureRect" parent="Canvas/ingamegui/hearts"]
+layout_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="Canvas/ingamegui/hearts"]
+layout_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="Canvas/ingamegui/hearts"]
+layout_mode = 2
+
+[node name="TextureRect4" type="TextureRect" parent="Canvas/ingamegui/hearts"]
+layout_mode = 2
+
+[node name="TextureRect5" type="TextureRect" parent="Canvas/ingamegui/hearts"]
+layout_mode = 2
+
 [node name="MarginContainer" type="MarginContainer" parent="Canvas/ingamegui"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -400.0
-offset_bottom = 214.0
+custom_minimum_size = Vector2(400, 2.08165e-12)
+layout_mode = 2
+offset_left = -345.0
+offset_top = 20.0
+offset_bottom = 175.0
 grow_horizontal = 0
 theme_override_constants/margin_top = 100
 theme_override_constants/margin_right = 100
 metadata/_edit_use_anchors_ = true
 
-[node name="counter" type="Label" parent="Canvas/ingamegui/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Canvas/ingamegui/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="PanelContainer" type="PanelContainer" parent="Canvas/ingamegui/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 60)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("11_jqq7j")
+
+[node name="MarginContainer" type="MarginContainer" parent="Canvas/ingamegui/MarginContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Control" type="Control" parent="Canvas/ingamegui/MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Canvas/ingamegui/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/Control"]
+layout_direction = 3
+layout_mode = 2
+offset_right = 290.0
+offset_bottom = 50.0
+tooltip_text = "lives left"
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Canvas/ingamegui/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 60)
+layout_mode = 2
+theme = ExtResource("11_qvvmu")
+theme_override_font_sizes/font_size = 40
+text = "    "
+horizontal_alignment = 1
+
+[node name="xpbar" type="TextureProgressBar" parent="Canvas/ingamegui/MarginContainer/VBoxContainer/Label"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 7.0
+value = 1.0
+nine_patch_stretch = true
+texture_progress = SubResource("GradientTexture1D_4gh0e")
+script = ExtResource("13_b6j3a")
+
+[node name="Label2" type="Label" parent="Canvas/ingamegui/MarginContainer/VBoxContainer/Label/xpbar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxEmpty_um6lf")
+text = "Level: 0"
+horizontal_alignment = 1
+
+[node name="counter" type="Label" parent="Canvas/ingamegui/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 60)
 layout_mode = 2
 size_flags_vertical = 0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 0
+theme = ExtResource("11_qvvmu")
 theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxFlat_2obas")
 text = "1-1"
 horizontal_alignment = 1
 script = ExtResource("9_ujwpq")
@@ -476,6 +840,526 @@ text = "menu"
 script = ExtResource("7_bt81l")
 metadata/signal = "mainmenu"
 
+[node name="TextureRect" type="TextureRect" parent="Canvas/gameover"]
+layout_mode = 0
+offset_left = 1920.0
+offset_right = 1920.0
+
+[node name="upgrademenu" type="Control" parent="Canvas"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("8_tiwyq")
+
+[node name="MarginContainer" type="MarginContainer" parent="Canvas/upgrademenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 500
+theme_override_constants/margin_top = 200
+theme_override_constants/margin_right = 500
+theme_override_constants/margin_bottom = 200
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Canvas/upgrademenu/MarginContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 2.08165e-12)
+layout_mode = 2
+theme_override_constants/separation = 200
+
+[node name="xpupgrade" type="Button" parent="Canvas/upgrademenu/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxEmpty_eobfo")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_45eox")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_q1alu")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_le0fj")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8f2ne")
+script = ExtResource("9_talmo")
+metadata/v = "xpup"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Canvas/upgrademenu/MarginContainer/HBoxContainer/xpupgrade"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 50
+
+[node name="title" type="Label" parent="Canvas/upgrademenu/MarginContainer/HBoxContainer/xpupgrade/VBoxContainer2"]
+custom_minimum_size = Vector2(2.08165e-12, 100)
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("4_rs2ol")
+theme_override_font_sizes/font_size = 30
+text = "Experienced"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="image" type="TextureRect" parent="Canvas/upgrademenu/MarginContainer/HBoxContainer/xpupgrade/VBoxContainer2"]
+texture_filter = 3
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+texture = ExtResource("19_naop1")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="box" type="Label" parent="Canvas/upgrademenu/MarginContainer/HBoxContainer/xpupgrade/VBoxContainer2"]
+custom_minimum_size = Vector2(2.08165e-12, 180)
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("4_rs2ol")
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="label" type="RichTextLabel" parent="Canvas/upgrademenu/MarginContainer/HBoxContainer/xpupgrade/VBoxContainer2/box"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 25
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4klms")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_cyfb2")
+bbcode_enabled = true
+text = "[center]Orbs dropped by enemies [color=green]+1[/color] [/center]"
+fit_content = true
+
+[node name="extralife" type="Button" parent="Canvas/upgrademenu/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxEmpty_eobfo")
+theme_override_styles/hover = ExtResource("17_kwfqf")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_q1alu")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_le0fj")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8f2ne")
+script = ExtResource("9_talmo")
+metadata/v = "extralife"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Canvas/upgrademenu/MarginContainer/HBoxContainer/extralife"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 50
+
+[node name="title" type="Label" parent="Canvas/upgrademenu/MarginContainer/HBoxContainer/extralife/VBoxContainer2"]
+custom_minimum_size = Vector2(2.08165e-12, 100)
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("4_rs2ol")
+theme_override_font_sizes/font_size = 30
+text = "Life"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="image" type="TextureRect" parent="Canvas/upgrademenu/MarginContainer/HBoxContainer/extralife/VBoxContainer2"]
+texture_filter = 3
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+texture = ExtResource("17_w5cku")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="box" type="Label" parent="Canvas/upgrademenu/MarginContainer/HBoxContainer/extralife/VBoxContainer2"]
+custom_minimum_size = Vector2(2.08165e-12, 180)
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("4_rs2ol")
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="label" type="RichTextLabel" parent="Canvas/upgrademenu/MarginContainer/HBoxContainer/extralife/VBoxContainer2/box"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 25
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4klms")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_cyfb2")
+bbcode_enabled = true
+text = "[center]Lives [color=green]+1[/color] [/center]"
+fit_content = true
+
+[node name="bulletdam" type="Button" parent="Canvas/upgrademenu/MarginContainer/HBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(2.08165e-12, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxEmpty_eobfo")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_8hsxr")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_q1alu")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_le0fj")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8f2ne")
+script = ExtResource("9_talmo")
+metadata/v = "bulletDamage"
+metadata/value = 1.0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Canvas/upgrademenu/MarginContainer/HBoxContainer/bulletdam"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 50
+
+[node name="title" type="Label" parent="Canvas/upgrademenu/MarginContainer/HBoxContainer/bulletdam/VBoxContainer2"]
+custom_minimum_size = Vector2(2.08165e-12, 100)
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("4_rs2ol")
+theme_override_font_sizes/font_size = 30
+text = "Stronger Bullets"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="image" type="TextureRect" parent="Canvas/upgrademenu/MarginContainer/HBoxContainer/bulletdam/VBoxContainer2"]
+texture_filter = 3
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+texture = ExtResource("17_ndbu5")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="box" type="Label" parent="Canvas/upgrademenu/MarginContainer/HBoxContainer/bulletdam/VBoxContainer2"]
+custom_minimum_size = Vector2(2.08165e-12, 180)
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("4_rs2ol")
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="label" type="RichTextLabel" parent="Canvas/upgrademenu/MarginContainer/HBoxContainer/bulletdam/VBoxContainer2/box"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 25
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4klms")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_cyfb2")
+bbcode_enabled = true
+text = "[center]Main weapon damage [color=green]+1[/color] [/center]"
+fit_content = true
+
+[node name="bulletfiring" type="Button" parent="Canvas/upgrademenu/MarginContainer/HBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(2.08165e-12, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxEmpty_eobfo")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_8hsxr")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_q1alu")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_le0fj")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8f2ne")
+script = ExtResource("9_talmo")
+metadata/v = "bulletFiringSpeed"
+metadata/value = 0.9
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Canvas/upgrademenu/MarginContainer/HBoxContainer/bulletfiring"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 50
+
+[node name="title" type="Label" parent="Canvas/upgrademenu/MarginContainer/HBoxContainer/bulletfiring/VBoxContainer2"]
+custom_minimum_size = Vector2(2.08165e-12, 100)
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("4_rs2ol")
+theme_override_font_sizes/font_size = 30
+text = "Faster Firing"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="image" type="TextureRect" parent="Canvas/upgrademenu/MarginContainer/HBoxContainer/bulletfiring/VBoxContainer2"]
+texture_filter = 3
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+texture = ExtResource("20_14eff")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="box" type="Label" parent="Canvas/upgrademenu/MarginContainer/HBoxContainer/bulletfiring/VBoxContainer2"]
+custom_minimum_size = Vector2(2.08165e-12, 180)
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("4_rs2ol")
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="label" type="RichTextLabel" parent="Canvas/upgrademenu/MarginContainer/HBoxContainer/bulletfiring/VBoxContainer2/box"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 25
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4klms")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_cyfb2")
+bbcode_enabled = true
+text = "[center]Main weapon firing speed [color=green]+10%[/color] [/center]"
+fit_content = true
+
+[node name="bulletspeed" type="Button" parent="Canvas/upgrademenu/MarginContainer/HBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(2.08165e-12, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxEmpty_eobfo")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_8hsxr")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_q1alu")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_le0fj")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8f2ne")
+script = ExtResource("9_talmo")
+metadata/v = "bulletSpeed"
+metadata/value = 1.1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Canvas/upgrademenu/MarginContainer/HBoxContainer/bulletspeed"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 50
+
+[node name="title" type="Label" parent="Canvas/upgrademenu/MarginContainer/HBoxContainer/bulletspeed/VBoxContainer2"]
+custom_minimum_size = Vector2(2.08165e-12, 100)
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("4_rs2ol")
+theme_override_font_sizes/font_size = 30
+text = "Stronger Bullets"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="image" type="TextureRect" parent="Canvas/upgrademenu/MarginContainer/HBoxContainer/bulletspeed/VBoxContainer2"]
+texture_filter = 3
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+texture = ExtResource("20_22lnm")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="box" type="Label" parent="Canvas/upgrademenu/MarginContainer/HBoxContainer/bulletspeed/VBoxContainer2"]
+custom_minimum_size = Vector2(2.08165e-12, 180)
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("4_rs2ol")
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="label" type="RichTextLabel" parent="Canvas/upgrademenu/MarginContainer/HBoxContainer/bulletspeed/VBoxContainer2/box"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 25
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4klms")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_cyfb2")
+bbcode_enabled = true
+text = "[center]Main weapon projectile speed [color=green]+10%[/color] [/center]"
+fit_content = true
+
+[node name="missiledam" type="Button" parent="Canvas/upgrademenu/MarginContainer/HBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(2.08165e-12, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxEmpty_eobfo")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_8hsxr")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_q1alu")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_le0fj")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8f2ne")
+script = ExtResource("9_talmo")
+metadata/v = "missileDamage"
+metadata/value = 1.0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Canvas/upgrademenu/MarginContainer/HBoxContainer/missiledam"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 50
+
+[node name="title" type="Label" parent="Canvas/upgrademenu/MarginContainer/HBoxContainer/missiledam/VBoxContainer2"]
+custom_minimum_size = Vector2(2.08165e-12, 100)
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("4_rs2ol")
+theme_override_font_sizes/font_size = 30
+text = "Sharper Missiles"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="image" type="TextureRect" parent="Canvas/upgrademenu/MarginContainer/HBoxContainer/missiledam/VBoxContainer2"]
+texture_filter = 3
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+texture = ExtResource("21_rnl06")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="box" type="Label" parent="Canvas/upgrademenu/MarginContainer/HBoxContainer/missiledam/VBoxContainer2"]
+custom_minimum_size = Vector2(2.08165e-12, 180)
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("4_rs2ol")
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="label" type="RichTextLabel" parent="Canvas/upgrademenu/MarginContainer/HBoxContainer/missiledam/VBoxContainer2/box"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 25
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4klms")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_cyfb2")
+bbcode_enabled = true
+text = "[center]Secondary weapon damage [color=green]+1[/color] [/center]"
+fit_content = true
+
+[node name="missileamount" type="Button" parent="Canvas/upgrademenu/MarginContainer/HBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(2.08165e-12, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxEmpty_eobfo")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_8hsxr")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_q1alu")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_le0fj")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8f2ne")
+script = ExtResource("9_talmo")
+metadata/v = "missileAmount"
+metadata/value = 1.0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Canvas/upgrademenu/MarginContainer/HBoxContainer/missileamount"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 50
+
+[node name="title" type="Label" parent="Canvas/upgrademenu/MarginContainer/HBoxContainer/missileamount/VBoxContainer2"]
+custom_minimum_size = Vector2(2.08165e-12, 100)
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("4_rs2ol")
+theme_override_font_sizes/font_size = 30
+text = "More Missiles"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="image" type="TextureRect" parent="Canvas/upgrademenu/MarginContainer/HBoxContainer/missileamount/VBoxContainer2"]
+texture_filter = 3
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+texture = ExtResource("22_bc657")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="box" type="Label" parent="Canvas/upgrademenu/MarginContainer/HBoxContainer/missileamount/VBoxContainer2"]
+custom_minimum_size = Vector2(2.08165e-12, 180)
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("4_rs2ol")
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="label" type="RichTextLabel" parent="Canvas/upgrademenu/MarginContainer/HBoxContainer/missileamount/VBoxContainer2/box"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 25
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4klms")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_cyfb2")
+bbcode_enabled = true
+text = "[center]Missiles per volley [color=green]+1[/color] [/center]"
+fit_content = true
+
 [node name="bus" type="Node" parent="."]
 script = ExtResource("5_t0g5c")
 
@@ -487,17 +1371,56 @@ script = ExtResource("5_t0g5c")
 wait_time = 0.5
 one_shot = true
 
+[node name="actionmusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_wkswc")
+volume_db = -3.0
+bus = &"music"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="actionmusic"]
+libraries = {
+"": SubResource("AnimationLibrary_weccd")
+}
+
+[node name="idlemusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_qlvsi")
+bus = &"music"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="idlemusic"]
+libraries = {
+"": SubResource("AnimationLibrary_1revp")
+}
+speed_scale = 0.5
+
+[node name="globalanims" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6u722")
+}
+script = ExtResource("20_4t5fo")
+metadata/tween = 2.08165e-12
+
 [connection signal="pressed" from="Canvas/mainmenu/Control/VBoxContainer/play" to="Canvas/mainmenu/Control/VBoxContainer/play" method="_on_pressed"]
 [connection signal="pressed" from="Canvas/mainmenu/Control/VBoxContainer/credits" to="Canvas/mainmenu/Control/VBoxContainer/credits" method="_on_pressed"]
 [connection signal="pressed" from="Canvas/mainmenu/Control/VBoxContainer/how to play" to="Canvas/mainmenu/Control/VBoxContainer/how to play" method="_on_pressed"]
 [connection signal="pressed" from="Canvas/creditscreen/Control/VBoxContainer/menu" to="Canvas/creditscreen/Control/VBoxContainer/menu" method="_on_pressed"]
-[connection signal="doit" from="Canvas/helpscreen/Control/VBoxContainer/HBoxContainer/VBoxContainer2/resetstats" to="." method="_on_resetstats_doit"]
-[connection signal="pressed" from="Canvas/helpscreen/Control/VBoxContainer/HBoxContainer/VBoxContainer2/resetstats" to="Canvas/helpscreen/Control/VBoxContainer/HBoxContainer/VBoxContainer2/resetstats" method="_on_pressed"]
-[connection signal="visibility_changed" from="Canvas/helpscreen/Control/VBoxContainer/HBoxContainer/VBoxContainer2/resetstats" to="Canvas/helpscreen/Control/VBoxContainer/HBoxContainer/VBoxContainer2/resetstats" method="_on_visibility_changed"]
-[connection signal="pressed" from="Canvas/helpscreen/Control/VBoxContainer/menu" to="Canvas/helpscreen/Control/VBoxContainer/menu" method="_on_pressed"]
+[connection signal="doit" from="Canvas/helpscreen/Control/MarginContainer/VBoxContainer/HBoxContainer/stats/resetstats" to="." method="_on_resetstats_doit"]
+[connection signal="pressed" from="Canvas/helpscreen/Control/MarginContainer/VBoxContainer/HBoxContainer/stats/resetstats" to="Canvas/helpscreen/Control/MarginContainer/VBoxContainer/HBoxContainer/stats/resetstats" method="_on_pressed"]
+[connection signal="visibility_changed" from="Canvas/helpscreen/Control/MarginContainer/VBoxContainer/HBoxContainer/stats/resetstats" to="Canvas/helpscreen/Control/MarginContainer/VBoxContainer/HBoxContainer/stats/resetstats" method="_on_visibility_changed"]
+[connection signal="value_changed" from="Canvas/helpscreen/Control/MarginContainer/VBoxContainer/HBoxContainer/options/musicslider/music" to="Canvas/helpscreen/Control/MarginContainer/VBoxContainer/HBoxContainer/options/musicslider/music" method="_on_value_changed"]
+[connection signal="value_changed" from="Canvas/helpscreen/Control/MarginContainer/VBoxContainer/HBoxContainer/options/sfxslider/sfx" to="Canvas/helpscreen/Control/MarginContainer/VBoxContainer/HBoxContainer/options/sfxslider/sfx" method="_on_value_changed"]
+[connection signal="pressed" from="Canvas/helpscreen/Control/MarginContainer/VBoxContainer/menu" to="Canvas/helpscreen/Control/MarginContainer/VBoxContainer/menu" method="_on_pressed"]
 [connection signal="pressed" from="Canvas/gameover/Control/VBoxContainer/retry" to="Canvas/gameover/Control/VBoxContainer/retry" method="_on_pressed"]
 [connection signal="pressed" from="Canvas/gameover/Control/VBoxContainer/menu" to="Canvas/gameover/Control/VBoxContainer/menu" method="_on_pressed"]
-[connection signal="start" from="bus" to="." method="_on_bus_start"]
-[connection signal="start" from="bus" to="Canvas/mainmenu" method="_on_bus_start"]
-[connection signal="start" from="bus" to="bus" method="_on_start"]
+[connection signal="pressed" from="Canvas/upgrademenu/MarginContainer/HBoxContainer/xpupgrade" to="Canvas/upgrademenu/MarginContainer/HBoxContainer/xpupgrade" method="_on_pressed"]
+[connection signal="pressed" from="Canvas/upgrademenu/MarginContainer/HBoxContainer/extralife" to="Canvas/upgrademenu/MarginContainer/HBoxContainer/extralife" method="_on_pressed"]
+[connection signal="pressed" from="Canvas/upgrademenu/MarginContainer/HBoxContainer/bulletdam" to="Canvas/upgrademenu/MarginContainer/HBoxContainer/bulletdam" method="_on_pressed"]
+[connection signal="pressed" from="Canvas/upgrademenu/MarginContainer/HBoxContainer/bulletfiring" to="Canvas/upgrademenu/MarginContainer/HBoxContainer/bulletfiring" method="_on_pressed"]
+[connection signal="pressed" from="Canvas/upgrademenu/MarginContainer/HBoxContainer/bulletspeed" to="Canvas/upgrademenu/MarginContainer/HBoxContainer/bulletspeed" method="_on_pressed"]
+[connection signal="pressed" from="Canvas/upgrademenu/MarginContainer/HBoxContainer/missiledam" to="Canvas/upgrademenu/MarginContainer/HBoxContainer/missiledam" method="_on_pressed"]
+[connection signal="pressed" from="Canvas/upgrademenu/MarginContainer/HBoxContainer/missileamount" to="Canvas/upgrademenu/MarginContainer/HBoxContainer/missileamount" method="_on_pressed"]
+[connection signal="clear" from="bus" to="bus" method="_on_clear"]
+[connection signal="xpup" from="bus" to="bus" method="_on_xpup"]
 [connection signal="timeout" from="chillTimer" to="." method="_on_chill_timer_timeout"]
+[connection signal="finished" from="actionmusic" to="." method="_on_actionmusic_finished"]
+[connection signal="animation_finished" from="actionmusic/AnimationPlayer" to="." method="actionfadedone"]
+[connection signal="finished" from="idlemusic" to="." method="_on_idlemusic_finished"]
+[connection signal="animation_finished" from="idlemusic/AnimationPlayer" to="." method="idlefadedone"]

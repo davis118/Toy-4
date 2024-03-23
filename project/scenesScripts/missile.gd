@@ -11,10 +11,10 @@ var turn = 1
 
 var topSpeed = 300
 var target
-var bus
+
 var expl = preload("res://scenesScripts/explodepart.tscn")
 var enemies
-
+var ovel #original velocity, before speed multiplier!
 var home = true
 
 
@@ -22,18 +22,23 @@ func clear():
 	var part = expl.instantiate()
 	$"/root/Main".add_child(part)
 	part.go(velocity,global_position,1)
-	queue_free()
+	visible = false
+	set_collision_layer_value(5,false)
+	$AudioStreamPlayer.play()
 	
-func goStraight():
+	
+	
+func goStraight(sp):
 	home = false
-	speed = 1000
+	speed = sp
 	
 	velocity = Vector2(1,0) * speed
 	
 func _ready():
 	#velocity = initialVel
 	var player = $AnimationPlayer
-	bus = $"/root/Main/bus"
+	$AudioStreamPlayer.pitch_scale = randf_range(.5,1.25) #sound variation
+	
 	bus.connect("clear",clear)
 	
 	player.play("spawn")
@@ -59,15 +64,15 @@ func _physics_process(delta):
 	if target != null and target.is_inside_tree() and home == true:
 		  
 		var direction = (target.global_position - global_position).normalized()
-		velocity.x = lerp(velocity.x,direction.x*velocity.length(),turn*delta)
-		velocity.y = lerp(velocity.y,direction.y*velocity.length(),turn*delta)
-		turn += 2*delta
+		velocity.x = lerp(velocity.x,direction.x*velocity.length(),turn*delta*1)
+		velocity.y = lerp(velocity.y,direction.y*velocity.length(),turn*delta*1)
+		turn += 2*delta * 1
 		#velocity *= Vector2(delta*acc+1,delta*acc+1)
 		
 		
-		velocity = velocity.normalized() * speed 
+		velocity = velocity.normalized() * speed  * 1
 	else: if home == false:
-		
+		velocity = velocity.normalized() * speed  * 1
 		pass
 	else:
 		target = getClosest()
@@ -77,3 +82,8 @@ func _physics_process(delta):
 	# Add the gravity.
 
 	move_and_slide()
+
+
+func _on_audio_stream_player_finished():
+	queue_free()
+	pass # Replace with function body.

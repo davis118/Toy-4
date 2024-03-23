@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bjjtrvp4gfvhi"]
+[gd_scene load_steps=7 format=3 uid="uid://bjjtrvp4gfvhi"]
 
 [ext_resource type="Script" path="res://scenesScripts/xp.gd" id="1_jpgtv"]
-[ext_resource type="Texture2D" uid="uid://6qdueh3fuxd0" path="res://resources/xp.png" id="1_p372b"]
-[ext_resource type="Texture2D" uid="uid://dckhdr08qtmx5" path="res://resources/xp2.png" id="2_id4em"]
+[ext_resource type="Texture2D" uid="uid://c5apaqbllfjx5" path="res://resources/xp.png" id="1_p372b"]
+[ext_resource type="Texture2D" uid="uid://o2o2hvt0k52r" path="res://resources/xp2.png" id="2_id4em"]
+[ext_resource type="AudioStream" uid="uid://c2pdx3ljb3r3m" path="res://resources/tone1.ogg" id="4_0562s"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2tmo1"]
 animations = [{
@@ -35,3 +36,10 @@ frame_progress = 0.642717
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(3, 3)
 shape = SubResource("RectangleShape2D_55nok")
+
+[node name="noise" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_0562s")
+pitch_scale = 1.73
+bus = &"sfx"
+
+[connection signal="finished" from="noise" to="." method="_on_audio_stream_player_finished"]

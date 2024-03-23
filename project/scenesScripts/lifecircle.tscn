@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bsw743r38s6f2"]
+
+[ext_resource type="Texture2D" uid="uid://vnvdn57d13ur" path="res://scenesScripts/whitecircle.png" id="1_8j7wg"]
+
+[node name="lifecircle" type="TextureRect"]
+modulate = Color(0.486275, 0.545098, 0.94902, 1)
+offset_right = 50.0
+offset_bottom = 50.0
+mouse_filter = 2
+texture = ExtResource("1_8j7wg")
+expand_mode = 2

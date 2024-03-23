@@ -1,6 +1,5 @@
 extends Control
 
-var bus
 
 func open():
 	#print("opening")
@@ -9,11 +8,11 @@ func open():
 	
 func close():
 	#print("closing")
+	
 	visible = false
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	bus = $"/root/Main/bus"
 	bus.connect("start",close)
 	#print(get_signal_connection_list("start"))
 	bus.connect("mainmenu",close)

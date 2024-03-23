@@ -1,6 +1,5 @@
 extends Control
 
-var bus
 
 func exist():
 	visible = true
@@ -11,7 +10,6 @@ func stopExist():
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	bus = $"/root/Main/bus"
 	bus.connect("died", exist)
 	bus.connect("start", stopExist)
 	bus.connect("mainmenu", stopExist)

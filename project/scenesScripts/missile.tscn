@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://nqcyn1000nr7"]
+[gd_scene load_steps=6 format=3 uid="uid://nqcyn1000nr7"]
 
 [ext_resource type="Script" path="res://scenesScripts/missile.gd" id="1_00hyd"]
+[ext_resource type="AudioStream" uid="uid://c3noso78ser8n" path="res://resources/hit.mp3" id="2_n0gfc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1hvkf"]
 size = Vector2(30, 15)
@@ -43,3 +44,9 @@ polygon = PackedVector2Array(40, 2.08165e-12, 2.08165e-12, 10, 2.08165e-12, -10)
 libraries = {
 "": SubResource("AnimationLibrary_72hxw")
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_n0gfc")
+bus = &"sfx"
+
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

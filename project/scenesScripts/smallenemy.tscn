@@ -1,35 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://qrt13yrnp64j"]
+[gd_scene load_steps=9 format=3 uid="uid://qrt13yrnp64j"]
 
 [ext_resource type="Script" path="res://scenesScripts/smallenemy.gd" id="1_dqoj7"]
-<<<<<<<< HEAD:project/scenesScripts/smallenemy.tscn
-[ext_resource type="Texture2D" uid="uid://btpu23qax7huu" path="res://resources/damage.png" id="2_b5ilj"]
-[ext_resource type="Texture2D" uid="uid://c3ix0ac0471q0" path="res://resources/11png.png" id="2_pdmg5"]
-[ext_resource type="Texture2D" uid="uid://biyhqy3r2nlqy" path="res://resources/squarehollow.png" id="3_oq80o"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_76ybn"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_pdmg5")
-}],
-"loop": true,
-"name": &"damage",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_b5ilj")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-========
 [ext_resource type="Texture2D" uid="uid://dt6wqg2oa82sb" path="res://resources/ss1.PNG" id="2_r2n30"]
 [ext_resource type="Texture2D" uid="uid://mr8r6vrk7jm5" path="res://resources/ss2.PNG" id="3_g4b0q"]
 [ext_resource type="Texture2D" uid="uid://dxkd7epb78hqd" path="res://resources/la1.PNG" id="4_if71s"]
 [ext_resource type="Texture2D" uid="uid://phvcf0piahar" path="res://resources/la2.PNG" id="5_rfr3r"]
->>>>>>>> KateA:toy4/toy4/scenesScripts/smallenemy.tscn
+[ext_resource type="Script" path="res://scenesScripts/timerspeed.gd" id="6_ary4p"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mt6t0"]
 animations = [{
@@ -86,23 +62,17 @@ motion_mode = 1
 script = ExtResource("1_dqoj7")
 metadata/straight = true
 
-<<<<<<<< HEAD:project/scenesScripts/smallenemy.tscn
-[node name="CoreSprite" type="AnimatedSprite2D" parent="."]
-scale = Vector2(60, 60)
-sprite_frames = SubResource("SpriteFrames_76ybn")
-animation = &"damage"
-
-========
->>>>>>>> KateA:toy4/toy4/scenesScripts/smallenemy.tscn
 [node name="VisualSprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.08, 0.08)
 sprite_frames = SubResource("SpriteFrames_mt6t0")
 frame_progress = 0.904489
 
 [node name="AttackTimer" type="Timer" parent="."]
+script = ExtResource("6_ary4p")
 
 [node name="MoveTimer" type="Timer" parent="."]
 wait_time = 2.0
+script = ExtResource("6_ary4p")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 4

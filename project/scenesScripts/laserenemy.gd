@@ -7,24 +7,27 @@ var accM = 8
 const fastSpeed = 3000
 var player
 const center = Vector2(960,540)
-var bus
+const xpDropped = 7
+
 var r
 var traveling = true
 var expl = preload("res://scenesScripts/explodepart.tscn")
+var xpScene = preload("res://scenesScripts/xp.tscn")
 var pos
 var floatPos
 var floatRad = 50
 var acc = Vector2(0,0)
-var rotationalSpeed = 0.002
+var rotationalSpeed = 0.05
 var laser
 var frozenLaser = false
 var straight = false
+var ogfps = 8
 
 func spawn(newPos:Vector2):
 	pos = newPos
 	position = (pos - center).normalized()*4000 + center
 	
-	velocity = (center - pos).normalized() * fastSpeed
+	velocity = (center - pos).normalized() * fastSpeed * 1
 	
 	r = pos.length()
 
@@ -47,19 +50,19 @@ func goStraight():
 	pass
 	
 func _ready():
-	bus = $"/root/Main/bus"
+	
 	laser = $laser
 	bus.connect("clear",clear)
 	
-	$CoreSprite.play("default")
 	
 	
 	pass
 
 func _physics_process(delta):
+	$VisualSprite.speed_scale = 1
 	if traveling == true && pos:
 		
-		if (position - pos).length() <= fastSpeed*delta:
+		if (position - pos).length() <= fastSpeed*delta * 1:
 			
 			traveling = false
 			velocity = Vector2(0,0)
@@ -73,7 +76,7 @@ func _physics_process(delta):
 		move_and_slide()
 	else: if floatPos:
 		
-		velocity += acc * delta 
+		velocity += acc * delta * 1
 		move_and_slide()
 		position.x = clamp(position.x, 0 , 1920)
 		position.y = clamp(position.y, 0 , 1080)
@@ -88,12 +91,12 @@ func _physics_process(delta):
 				desiredAng += 2*PI
 			
 			if desiredAng - laser.rotation > PI:
-				laser.rotation = move_toward(laser.rotation,-PI/2,rotationalSpeed)
+				laser.rotation = move_toward(laser.rotation,-PI/2,rotationalSpeed*delta*1)
 				
 			else: if laser.rotation - desiredAng > PI:
-				laser.rotation = move_toward(laser.rotation,PI*2.5,rotationalSpeed)
+				laser.rotation = move_toward(laser.rotation,PI*2.5,rotationalSpeed*delta*1)
 			else:
-				laser.rotation = move_toward(laser.rotation,desiredAng,rotationalSpeed)
+				laser.rotation = move_toward(laser.rotation,desiredAng,rotationalSpeed*delta*1)
 			#print(laser.rotation)
 			if laser.rotation < 0:
 				laser.rotation += 2*PI
@@ -134,16 +137,19 @@ func _on_glow_timer_timeout():
 	$FinTimer.start()
 
 func damage_flash():
-	$CoreSprite.play("damage")
-	await get_tree().create_timer(0.1).timeout
-	$CoreSprite.play("default")
-	
+	pass
+
 func _on_area_2d_body_entered(body):
+	#something is inside!!
 	var damage = body.get_meta("damage")
 	damage_flash()
-	
 	health -= damage
 	body.clear()
 	if health <= 0:
+		for i in xpDropped+bus.extraxp:
+			var xporb = xpScene.instantiate()
+			$"/root/Main".add_child(xporb)
+			xporb.init(global_position)
+			xporb.set_meta("isorb", true)
 		queue_free()
 	pass # Replace with function body.

@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bvaurrlkkr3v8"]
+[gd_scene load_steps=8 format=3 uid="uid://bvaurrlkkr3v8"]
 
 [ext_resource type="Script" path="res://scenesScripts/bullet.gd" id="1_ac3ib"]
 [ext_resource type="Texture2D" uid="uid://c3ix0ac0471q0" path="res://resources/11png.png" id="1_q2cxn"]
+[ext_resource type="AudioStream" uid="uid://c3noso78ser8n" path="res://resources/hit.mp3" id="3_k1njt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aqjjl"]
 size = Vector2(60, 20)
@@ -56,3 +57,10 @@ sprite_frames = SubResource("SpriteFrames_bfpt6")
 libraries = {
 "": SubResource("AnimationLibrary_e4cus")
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_k1njt")
+volume_db = -10.0
+bus = &"sfx"
+
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

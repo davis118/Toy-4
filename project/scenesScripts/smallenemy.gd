@@ -14,7 +14,7 @@ const fastSpeed = 3000
 var player
 const center = Vector2(960,540)
 const xpDropped = 3
-var bus
+var ovel
 var r
 var traveling = true
 var pos
@@ -53,18 +53,19 @@ func floatAround():
 
 
 func _ready():
-	bus = $"/root/Main/bus"
 	bus.connect("clear",clear)
-	$CoreSprite.play("default")
+	
+	
 	pass
 
 func _physics_process(delta):
+	$VisualSprite.speed_scale = 1
 	if traveling == true && pos:
 		
 		if (position - pos).length() <= fastSpeed*delta:
 			
 			traveling = false
-			velocity = Vector2(0,0)
+			ovel = Vector2(0,0)
 			position = pos
 			$AttackTimer.start()
 			$MoveTimer.start()
@@ -77,7 +78,10 @@ func _physics_process(delta):
 		move_and_slide()
 		position.x = clamp(position.x, 0 , 1920)
 		position.y = clamp(position.y, 0 , 1080)
-		velocity += acc * delta 
+		ovel += acc * delta * 1
+		velocity = ovel * 1
+		#velocity += acc * delta * 1
+		
 		
 
 
@@ -99,9 +103,7 @@ func _on_move_timer_timeout():
 
 
 func damage_flash():
-	$CoreSprite.play("damage")
-	await get_tree().create_timer(0.1).timeout
-	$CoreSprite.play("default")
+	pass
 
 func _on_area_2d_body_entered(body):
 	#something is inside!!
@@ -110,7 +112,7 @@ func _on_area_2d_body_entered(body):
 	health -= damage
 	body.clear()
 	if health <= 0:
-		for i in xpDropped:
+		for i in xpDropped + bus.extraxp:
 			var xporb = xpScene.instantiate()
 			$"/root/Main".add_child(xporb)
 			xporb.init(global_position)
