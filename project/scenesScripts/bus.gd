@@ -11,7 +11,7 @@ signal powerup()
 signal resume()
 
 #GUI and sound
-signal mainmenu()
+signal menu()
 signal credits()
 signal help()
 signal updatevolume(type, val)

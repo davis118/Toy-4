@@ -16,7 +16,7 @@ func _ready():
 	an = $AnimationPlayer
 	bus.connect("start",close)
 	#print(get_signal_connection_list("start"))
-	bus.connect("mainmenu",close)
+	bus.connect("menu",close)
 	bus.connect("credits",open)
 	
 

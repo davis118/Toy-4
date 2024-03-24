@@ -13,7 +13,7 @@ func stopExist():
 func _ready():
 	bus.connect("died", exist)
 	bus.connect("start", stopExist)
-	bus.connect("mainmenu", stopExist)
+	bus.connect("menu", stopExist)
 	
 
 

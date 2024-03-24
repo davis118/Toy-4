@@ -44,7 +44,7 @@ func _ready():
 	hbox = $MarginContainer/VBoxContainer/PanelContainer/MarginContainer/Control/HBoxContainer
 	bus.connect("start",open)
 	#print(get_signal_connection_list("start"))
-	bus.connect("mainmenu",close)
+	bus.connect("menu",close)
 	bus.connect("credits",close)
 	bus.connect("help",close)
 	bus.connect("livesChanged",lifeupdate)

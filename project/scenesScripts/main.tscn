@@ -50,67 +50,92 @@ border_color = Color(0.490196, 0.576471, 0.741176, 0.431373)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f2qr6"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_ba3if"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("6_lkhgt")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_ib4tj")
-}],
-"loop": true,
-"name": &"backward",
-"speed": 8.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("8_huv2k")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_ye3w3")
-}],
-"loop": true,
-"name": &"default",
-"speed": 8.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("10_85piw")
-}, {
-"duration": 1.0,
-"texture": ExtResource("11_6e3e5")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_huv2k")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_ye3w3")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_huv2k")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_ye3w3")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_lkhgt")
-}],
-"loop": true,
-"name": &"forward",
-"speed": 8.0
-}]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_qpc0w"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("13_mc7pt")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
+[sub_resource type="Animation" id="Animation_qbxio"]
+resource_name = "menuclose"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(660, 254), Vector2(660, -826)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control:modulate")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../VisualSprite:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../../VisualSprite:rotation")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -3.14159]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../../VisualSprite:position")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(387, 540), Vector2(387, -540)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../../VisualSprite:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_rngyr"]
 resource_name = "menuin"
@@ -141,7 +166,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("VisualSprite:modulate")
+tracks/2/path = NodePath("../../VisualSprite:modulate")
 tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -153,7 +178,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("VisualSprite:rotation")
+tracks/3/path = NodePath("../../VisualSprite:rotation")
 tracks/3/interp = 2
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -165,7 +190,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("VisualSprite:position")
+tracks/4/path = NodePath("../../VisualSprite:position")
 tracks/4/interp = 2
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -177,7 +202,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("VisualSprite:visible")
+tracks/5/path = NodePath("../../VisualSprite:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -228,7 +253,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("VisualSprite:visible")
+tracks/2/path = NodePath("../../VisualSprite:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -248,93 +273,6 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
-}
-
-[sub_resource type="Animation" id="Animation_qbxio"]
-resource_name = "menuclose"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Control:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(660, 254), Vector2(660, -826)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Control:modulate")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("VisualSprite:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, true]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("VisualSprite:rotation")
-tracks/4/interp = 2
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, -3.14159]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("VisualSprite:position")
-tracks/5/interp = 2
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(387, 540), Vector2(387, -540)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("VisualSprite:modulate")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nvwmi"]
@@ -885,6 +823,68 @@ _data = {
 "slow": SubResource("Animation_6d5h7")
 }
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_ba3if"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_lkhgt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ib4tj")
+}],
+"loop": true,
+"name": &"backward",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_huv2k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ye3w3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_85piw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_6e3e5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_huv2k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ye3w3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_huv2k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ye3w3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_lkhgt")
+}],
+"loop": true,
+"name": &"forward",
+"speed": 8.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qpc0w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_mc7pt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_4bmvj")
 
@@ -921,7 +921,6 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_3eod5")
 [node name="Canvas" type="CanvasLayer" parent="."]
 
 [node name="mainmenu" type="Control" parent="Canvas"]
-visible = false
 z_index = 10
 layout_mode = 3
 anchors_preset = 15
@@ -937,12 +936,12 @@ anchor_left = 0.34375
 anchor_top = 0.235185
 anchor_right = 0.65625
 anchor_bottom = 0.87037
-offset_bottom = 0.0036664
+offset_top = 0.000202894
+offset_bottom = 0.00384951
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-metadata/_edit_use_anchors_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Canvas/mainmenu/Control"]
 layout_mode = 1
@@ -1006,18 +1005,6 @@ text = "help & options
 "
 script = ExtResource("4_8dy6p")
 metadata/signal = "help"
-
-[node name="VisualSprite" type="AnimatedSprite2D" parent="Canvas/mainmenu"]
-position = Vector2(387, 540)
-scale = Vector2(0.3, 0.3)
-sprite_frames = SubResource("SpriteFrames_ba3if")
-script = ExtResource("12_mqctd")
-
-[node name="CoreSprite" type="AnimatedSprite2D" parent="Canvas/mainmenu/VisualSprite"]
-position = Vector2(-23.3334, 0)
-rotation = 0.785398
-scale = Vector2(53.3333, 53.3333)
-sprite_frames = SubResource("SpriteFrames_qpc0w")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Canvas/mainmenu"]
 libraries = {
@@ -1087,7 +1074,7 @@ theme = ExtResource("4_rs2ol")
 theme_override_font_sizes/font_size = 50
 text = "menu"
 script = ExtResource("7_bt81l")
-metadata/signal = "mainmenu"
+metadata/signal = "menu"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Canvas/creditscreen"]
 libraries = {
@@ -1291,7 +1278,7 @@ theme = ExtResource("4_rs2ol")
 theme_override_font_sizes/font_size = 50
 text = "menu"
 script = ExtResource("7_bt81l")
-metadata/signal = "mainmenu"
+metadata/signal = "menu"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Canvas/helpscreen"]
 libraries = {
@@ -1481,7 +1468,7 @@ theme = ExtResource("4_rs2ol")
 theme_override_font_sizes/font_size = 50
 text = "menu"
 script = ExtResource("7_bt81l")
-metadata/signal = "mainmenu"
+metadata/signal = "menu"
 
 [node name="TextureRect" type="TextureRect" parent="Canvas/gameover"]
 layout_mode = 0
@@ -2051,6 +2038,18 @@ libraries = {
 }
 script = ExtResource("20_4t5fo")
 metadata/tween = 2.08165e-12
+
+[node name="VisualSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(387, 540)
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_ba3if")
+script = ExtResource("12_mqctd")
+
+[node name="CoreSprite" type="AnimatedSprite2D" parent="VisualSprite"]
+position = Vector2(-23.3334, 0)
+rotation = 0.785398
+scale = Vector2(53.3333, 53.3333)
+sprite_frames = SubResource("SpriteFrames_qpc0w")
 
 [connection signal="pressed" from="Canvas/mainmenu/Control/VBoxContainer/play" to="Canvas/mainmenu/Control/VBoxContainer/play" method="_on_pressed"]
 [connection signal="pressed" from="Canvas/mainmenu/Control/VBoxContainer/credits" to="Canvas/mainmenu/Control/VBoxContainer/credits" method="_on_pressed"]

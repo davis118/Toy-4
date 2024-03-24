@@ -21,7 +21,7 @@ func _ready():
 	animp.play("menuin")
 	bus.connect("start",pl)
 	#print(get_signal_connection_list("start"))
-	bus.connect("mainmenu",open)
+	bus.connect("menu",open)
 	bus.connect("credits",close)
 	bus.connect("help",close)
 	

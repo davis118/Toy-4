@@ -198,8 +198,8 @@ func startGame():
 	
 	
 	#STARTING WAVE
-	diff = 1
-	type = 4
+	diff = 0
+	type = 0
 	
 	
 	
@@ -237,7 +237,7 @@ func _ready():
 	$globalanims.set_meta("tween",1)
 	bus.connect("start", startGame)
 	bus.connect("died", over)
-	bus.connect("mainmenu",save_game)
+	bus.connect("menu",save_game)
 	bus.connect("updatevolume",updatevol)
 	actionmusic = $actionmusic
 	idlemusic = $idlemusic
@@ -277,7 +277,7 @@ func _input(event):
 		
 		if playing == false:
 			print("m")
-			bus.emit_signal("mainmenu")
+			bus.emit_signal("menu")
 	pass
 
 func _on_resetstats_doit():
