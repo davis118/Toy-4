@@ -2,11 +2,12 @@ extends Control
 
 
 func exist():
-	visible = true
+	$AnimationPlayer.play("gameoverin")
 
 	
 func stopExist():
-	visible = false
+	if visible == true:
+		$AnimationPlayer.play("gameoverout")
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():

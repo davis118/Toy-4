@@ -1,6 +1,16 @@
-[gd_resource type="AudioBusLayout" format=3 uid="uid://dsbctmbs5ds1q"]
+[gd_resource type="AudioBusLayout" load_steps=3 format=3 uid="uid://dsbctmbs5ds1q"]
+
+[sub_resource type="AudioEffectChorus" id="AudioEffectChorus_ksta0"]
+resource_name = "Chorus"
+
+[sub_resource type="AudioEffectChorus" id="AudioEffectChorus_oa00o"]
+resource_name = "Chorus"
 
 [resource]
+bus/0/effect/0/effect = SubResource("AudioEffectChorus_ksta0")
+bus/0/effect/0/enabled = false
+bus/0/effect/1/effect = SubResource("AudioEffectChorus_oa00o")
+bus/0/effect/1/enabled = false
 bus/1/name = &"music"
 bus/1/solo = false
 bus/1/mute = false

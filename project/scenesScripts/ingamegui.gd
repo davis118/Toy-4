@@ -1,17 +1,18 @@
 extends Control
 
-
+var an
 var lives
 const lifecircle = preload("res://scenesScripts/lifecircle.tscn")
 var hbox 
 func open():
 	#print("opening")
-	visible = true
+	an.play("ingamein")
 
 	
 func close():
 	#print("closing")
-	visible = false
+	if visible == true:
+		an.play("ingameout")
 	
 func lifeupdate(newlives):
 	
@@ -48,6 +49,13 @@ func _ready():
 	bus.connect("help",close)
 	bus.connect("livesChanged",lifeupdate)
 	bus.connect("died",clear)
+	
+	an = $AnimationPlayer
+	if an:
+		print("theres an")
+	else:
+		print("no an")
+		print(name)
 	
 	
 

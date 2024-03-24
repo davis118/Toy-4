@@ -1,18 +1,19 @@
 extends Control
 
-
+var an
 func open():
 	#print("opening")
-	visible = true
+	an.play("credsin")
 
 	
 func close():
 	#print("closing")
-	visible = false
+	if visible == true:
+		an.play("credsout")
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
-
+	an = $AnimationPlayer
 	bus.connect("start",close)
 	#print(get_signal_connection_list("start"))
 	bus.connect("mainmenu",close)

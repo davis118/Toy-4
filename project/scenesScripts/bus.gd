@@ -8,6 +8,7 @@ signal levelup(level)
 signal clear()
 signal livesChanged(lives) #mainly to update gui
 signal powerup()
+signal resume()
 
 #GUI and sound
 signal mainmenu()

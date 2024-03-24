@@ -67,12 +67,14 @@ func _physics_process(delta):
 			traveling = false
 			velocity = Vector2(0,0)
 			position = pos
-			$AttackTimer.start()
+			#$AttackTimer.start()
 			$MoveTimer.start()
 			$VisualSprite.play("default")
 			floatAround()
 			if has_node("/root/Main/player"):
 				player = $"/root/Main/player"
+			$randomTimer.wait_time = randf_range(2,8)
+			$randomTimer.start()
 		move_and_slide()
 	else: if floatPos:
 		
@@ -152,4 +154,11 @@ func _on_area_2d_body_entered(body):
 			xporb.init(global_position)
 			xporb.set_meta("isorb", true)
 		queue_free()
+	pass # Replace with function body.
+
+
+func _on_random_timer_timeout():
+	laser.get_node("CollisionShape2D/sprite").modulate = Color(1,1,1)
+	$GlowTimer.start()
+	$AttackTimer.start()
 	pass # Replace with function body.

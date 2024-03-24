@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b44hykaf7yuqs"]
+[gd_scene load_steps=10 format=3 uid="uid://b44hykaf7yuqs"]
 
 [ext_resource type="Script" path="res://scenesScripts/laserenemy.gd" id="1_g4bix"]
 [ext_resource type="Texture2D" uid="uid://cogdfewsqx6d8" path="res://resources/le1.PNG" id="2_dp8qb"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://da271mv2h3b2j" path="res://resources/le2.PNG" id="3_djrsv"]
 [ext_resource type="Texture2D" uid="uid://daqsyaieugaqx" path="res://resources/ll1.PNG" id="4_4b22t"]
 [ext_resource type="Texture2D" uid="uid://hvp78g5258rh" path="res://resources/ll2.PNG" id="5_aw03f"]
-[ext_resource type="Script" path="res://scenesScripts/timerspeed.gd" id="6_e5330"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mt6t0"]
 animations = [{
@@ -63,11 +62,9 @@ animation = &"laser"
 
 [node name="AttackTimer" type="Timer" parent="."]
 wait_time = 10.0
-script = ExtResource("6_e5330")
 
 [node name="MoveTimer" type="Timer" parent="."]
 wait_time = 2.0
-script = ExtResource("6_e5330")
 
 [node name="laser" type="CharacterBody2D" parent="."]
 z_index = 6
@@ -87,12 +84,10 @@ sprite_frames = SubResource("SpriteFrames_bfpt6")
 
 [node name="FinTimer" type="Timer" parent="."]
 one_shot = true
-script = ExtResource("6_e5330")
 
 [node name="GlowTimer" type="Timer" parent="."]
 wait_time = 0.4
 one_shot = true
-script = ExtResource("6_e5330")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 4
@@ -101,8 +96,12 @@ collision_mask = 16
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 polygon = PackedVector2Array(-36, 2.08165e-12, 10, 76, 30, 76, 30, -76, 10, -76)
 
+[node name="randomTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="timeout" from="AttackTimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
 [connection signal="timeout" from="FinTimer" to="." method="_on_fin_timer_timeout"]
 [connection signal="timeout" from="GlowTimer" to="." method="_on_glow_timer_timeout"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="randomTimer" to="." method="_on_random_timer_timeout"]

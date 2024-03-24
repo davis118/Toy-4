@@ -7,6 +7,7 @@ extends Node2D
 var playerScene = preload("res://scenesScripts/player.tscn")
 var smallEnemyScene = preload("res://scenesScripts/smallenemy.tscn")
 var laserEnemyScene = preload("res://scenesScripts/laserenemy.tscn")
+var spinnyEnemyScene = preload("res://scenesScripts/spinnyenemy.tscn")
 
 
 var player
@@ -101,6 +102,8 @@ func spawnEnemies(): #difficulty and type of wave
 #type 0 - first row of straight shooters, back row of angled shooters
 		for i in range(diff+3):
 		
+		#lol
+			#var enemy = spinnyEnemyScene.instantiate()
 			var enemy = smallEnemyScene.instantiate()
 			add_child(enemy)
 			enemy.spawn(Vector2(1100,(140 + i*(800/(diff+3-1)))))
@@ -143,20 +146,20 @@ func spawnEnemies(): #difficulty and type of wave
 			enemy.set_meta("straight", true)
 	else: if type < 4:
 #type 3 - laser swarm. back row does not aim
-		for i in range(diff*2+2):
+		for i in range(diff+3):
 		
 			var enemy = laserEnemyScene.instantiate()
 			add_child(enemy)
-			enemy.spawn(Vector2(1100,(140 + i*(800/(diff*2+2-1)))))
+			enemy.spawn(Vector2(1100,(140 + i*(800/(diff+3-1)))))
 		
-		for i in range(diff*2+3):
+		for i in range(diff+2):
 		
 			var enemy = laserEnemyScene.instantiate()
 			add_child(enemy)
-			enemy.spawn(Vector2(1600,(140 + i*(800/(diff*2+3-1)))))
+			enemy.spawn(Vector2(1600,(140 + i*(800/(diff+2-1)))))
 			enemy.goStraight()
 	else: if type < 5:
-#type 4 - lasers in back, aimed shooters in front
+#type 4 - lasers in back, aimed shooters in front, seahorse
 		for i in range(diff+4):
 		
 			var enemy = smallEnemyScene.instantiate()
@@ -164,11 +167,19 @@ func spawnEnemies(): #difficulty and type of wave
 			enemy.spawn(Vector2(1100,(140 + i*(800/(diff+4-1)))))
 			enemy.set_meta("straight", false)
 		
-		for i in range(diff+2):
+		for i in range(2):
 		
 			var enemy = laserEnemyScene.instantiate()
 			add_child(enemy)
-			enemy.spawn(Vector2(1600,(140 + i*(800/(diff+2-1)))))
+			enemy.spawn(Vector2(1600,(140 + i*800)))
+			
+		for i in range(diff):
+			var enemy = spinnyEnemyScene.instantiate()
+			add_child(enemy)
+			if diff > 1:
+				enemy.spawn(Vector2(1600,(190 + i*(700/(diff-1)))))
+			else:
+				enemy.spawn(Vector2(1600,540))
 
 
 func startGame():
@@ -185,15 +196,16 @@ func startGame():
 	player.global_position = Vector2(380,540)
 	player.lives = startinglives
 	
-	diff = 0
-	type = 0
+	
+	#STARTING WAVE
+	diff = 1
+	type = 4
+	
+	
+	
 	spawnEnemies()
 	playing = true
-		#this was for circle spawn, but i changed to line!!
-		#var theta = i * 2 * PI /amount
-		#var r = 480
-		#print(Vector2(r*cos(i),r*sinx(i)))
-		#enemy.spawn(Vector2(r*cos(theta),r*sin(theta)),) #relative to center!!
+	
 
 func updateStatsBox():
 		$"Canvas/helpscreen/Control/MarginContainer/VBoxContainer/HBoxContainer/stats/statsbox".text = "\ntotal flights: "+str(flights)+"\nhighest wave: " + str(hdiff+1)+"-"+str(htype+1)+"\n\n"

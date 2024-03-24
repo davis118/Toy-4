@@ -1,20 +1,27 @@
 extends Control
 
 var grid
+var owedLevels = 0
 func open():
 	#print("opening")
 	visible = true
+	#$AnimationPlayer.play("upgradein")
+	print("yahoo")
 
 	
 func close():
 	#print("closing")
-	visible = false
+	if Engine.time_scale != 1:
+		bus.emit_signal("resume")
+	
 
-func levelup(level):
-	print(level)
-	if level > 0:
-		visible = true
-		
+	visible == false
+
+
+func levelup():
+	
+	owedLevels -=1
+
 	var childs = grid.get_children()
 	
 	for i in range(childs.size()):
@@ -29,18 +36,31 @@ func levelup(level):
 		#so second isnt first
 	childs[first].visible = true
 	childs[second].visible = true
+	
 		
 	
 func powerup():
-	close()
+	if owedLevels <=0:
+		close()
+		visible = false
+	else:
+		levelup() #number doesnt actually matter i just realized
 	
+func incoming(level):
+	owedLevels+=1
+	if visible == false:
+		open()
+		levelup()
+	pass
+func oof():
+	visible = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	grid = $MarginContainer/HBoxContainer
 
 	#print(get_signal_connection_list("start"))
-	bus.connect("died",close)
-	bus.connect("levelup",levelup)
+	bus.connect("died",oof)
+	bus.connect("levelup",incoming)
 	bus.connect("powerup",powerup)
 	
 	

@@ -16,6 +16,8 @@ func clear():
 func _physics_process(delta):
 	velocity = velocity + Vector2(randf_range(-100,100), randf_range(-100,100))*delta*1
 	global_position += velocity*delta*1
+	if position.x < -200 or position.x > 2120 or position.y < -200 or position.y > 1280:
+		clear()
 
 
 

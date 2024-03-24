@@ -1,0 +1,129 @@
+[gd_scene load_steps=12 format=3 uid="uid://cq26w3kqsywar"]
+
+[ext_resource type="Script" path="res://scenesScripts/spinnyenemy.gd" id="1_34i6h"]
+[ext_resource type="Texture2D" uid="uid://ci2l6cu57wwhs" path="res://resources/sh1.png" id="2_ok066"]
+[ext_resource type="Texture2D" uid="uid://b20m8cy7hjot3" path="res://resources/sh2.png" id="3_v15ca"]
+[ext_resource type="Texture2D" uid="uid://cw1a6k7o44tn2" path="res://resources/tri2.png" id="4_ynmng"]
+[ext_resource type="Texture2D" uid="uid://c0oyvxesvjuuo" path="res://resources/tri1.png" id="5_lj0kn"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mt6t0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ok066")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_v15ca")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u1jjn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_ynmng")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_lj0kn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="Animation" id="Animation_yjpk6"]
+resource_name = "warm"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:metadata/spinspeed")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 3.142]
+}
+
+[sub_resource type="Animation" id="Animation_irfrp"]
+resource_name = "cool"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:metadata/spinspeed")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [3.142, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8joyl"]
+_data = {
+"cool": SubResource("Animation_irfrp"),
+"warm": SubResource("Animation_yjpk6")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5k7wu"]
+size = Vector2(64, 64)
+
+[node name="spinnyenemy" type="CharacterBody2D" groups=["enemies"]]
+z_index = 1
+scale = Vector2(2, 2)
+collision_layer = 4
+collision_mask = 0
+motion_mode = 1
+script = ExtResource("1_34i6h")
+metadata/spinspeed = 0.0
+
+[node name="VisualSprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.08, 0.08)
+sprite_frames = SubResource("SpriteFrames_mt6t0")
+frame_progress = 0.680653
+
+[node name="triangle" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.08, 0.08)
+sprite_frames = SubResource("SpriteFrames_u1jjn")
+frame_progress = 0.179438
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 15.0
+
+[node name="TinyTimer" type="Timer" parent="AttackTimer"]
+wait_time = 0.1
+
+[node name="CapacityTimer" type="Timer" parent="AttackTimer"]
+wait_time = 5.0
+one_shot = true
+
+[node name="warmup" type="AnimationPlayer" parent="AttackTimer"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_8joyl")
+}
+
+[node name="MoveTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(32, 2.08165e-12)
+shape = SubResource("RectangleShape2D_5k7wu")
+
+[connection signal="timeout" from="AttackTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="AttackTimer/TinyTimer" to="." method="_on_tiny_timer_timeout"]
+[connection signal="timeout" from="AttackTimer/CapacityTimer" to="." method="_on_capacity_timer_timeout"]
+[connection signal="animation_finished" from="AttackTimer/warmup" to="." method="_on_warmup_animation_finished"]
+[connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -19,7 +19,7 @@ func died():
 func _ready():
 	
 	bus.connect("levelup",lvlup)
-	bus.connect("powerup",powerup)
+	bus.connect("resume",powerup)
 	bus.connect("died",died)
 	pass # Replace with function body.
 
